@@ -196,8 +196,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\DbContext.cs" />
+    <Compile Include="Models\Buyer.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Goods.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
