@@ -14,13 +14,6 @@ namespace OnlineShop.Models
     
     public partial class Address
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Address()
-        {
-            this.Buyer = new HashSet<Buyer>();
-            this.Order = new HashSet<Order>();
-        }
-    
         public int Id { get; set; }
         public string Postcode { get; set; }
         public string Country { get; set; }
@@ -29,10 +22,5 @@ namespace OnlineShop.Models
         public string Street { get; set; }
         public string House { get; set; }
         public string Flat { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Buyer> Buyer { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
     }
 }

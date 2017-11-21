@@ -47,7 +47,7 @@
     <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
-    <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Discriminator" Type="nvarchar" MaxLength="128" />
   </EntityType>
   <EntityType Name="Buyer">
     <Key>
@@ -75,6 +75,7 @@
     <Property Name="Size" Type="int" Nullable="false" />
     <Property Name="Count" Type="int" Nullable="false" />
     <Property Name="Price" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="Image" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Message">
     <Key>
@@ -94,6 +95,7 @@
     <Property Name="BuyerId" Type="int" Nullable="false" />
     <Property Name="ManagerId" Type="int" Nullable="false" />
     <Property Name="ShoppingCartId" Type="int" Nullable="false" />
+    <Property Name="DeliveryAddressId" Type="int" Nullable="false" />
     <Property Name="PaymentType" Type="smallint" Nullable="false" />
     <Property Name="IsPayed" Type="bit" Nullable="false" />
     <Property Name="TotalCost" Type="decimal" Precision="7" Scale="2" Nullable="false" />
@@ -206,6 +208,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Order_Address">
+    <End Role="Address" Type="Self.Address" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="DeliveryAddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Order_Buyer">
     <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
     <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -296,6 +310,10 @@
     <AssociationSet Name="FK_MessageSender_User" Association="Self.FK_MessageSender_User">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Address" Association="Self.FK_Order_Address">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Order" EntitySet="Order" />
     </AssociationSet>
     <AssociationSet Name="FK_Order_Buyer" Association="Self.FK_Order_Buyer">
       <End Role="Buyer" EntitySet="Buyer" />

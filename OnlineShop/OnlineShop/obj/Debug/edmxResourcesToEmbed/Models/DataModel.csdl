@@ -12,7 +12,6 @@
     <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="House" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Flat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Buyer" Relationship="Self.FK_Buyer_Address" FromRole="Address" ToRole="Buyer" />
   </EntityType>
   <EntityType Name="AspNetRoles">
     <Key>
@@ -41,11 +40,9 @@
     <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
     <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
     <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Buyer" Relationship="Self.FK_Buyer_AspNetUsers" FromRole="AspNetUsers" ToRole="Buyer" />
-    <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_AspNetUsers" FromRole="AspNetUsers" ToRole="Employee" />
-    <NavigationProperty Name="Message" Relationship="Self.FK_MessageRecepient_User" FromRole="AspNetUsers" ToRole="Message" />
-    <NavigationProperty Name="Message1" Relationship="Self.FK_MessageSender_User" FromRole="AspNetUsers" ToRole="Message" />
+    <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MessageRecepient" Relationship="Self.FK_MessageRecepient_User" FromRole="AspNetUsers" ToRole="Message" />
+    <NavigationProperty Name="MessageSender" Relationship="Self.FK_MessageSender_User" FromRole="AspNetUsers" ToRole="Message" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
   </EntityType>
   <EntityType Name="Buyer">
@@ -81,6 +78,7 @@
     <Property Name="Count" Type="Int32" Nullable="false" />
     <Property Name="Price" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
     <NavigationProperty Name="ShoppingCart" Relationship="Self.FK_ShoppingCart_Goods" FromRole="Goods" ToRole="ShoppingCart" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="Message">
     <Key>
@@ -90,8 +88,8 @@
     <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Sender" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Recepient" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_MessageRecepient_User" FromRole="Message" ToRole="AspNetUsers" />
-    <NavigationProperty Name="AspNetUsers1" Relationship="Self.FK_MessageSender_User" FromRole="Message" ToRole="AspNetUsers" />
+    <NavigationProperty Name="AspNetUsersRecepient" Relationship="Self.FK_MessageRecepient_User" FromRole="Message" ToRole="AspNetUsers" />
+    <NavigationProperty Name="AspNetUsersSender" Relationship="Self.FK_MessageSender_User" FromRole="Message" ToRole="AspNetUsers" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -108,6 +106,8 @@
     <NavigationProperty Name="Buyer" Relationship="Self.FK_Order_Buyer" FromRole="Order" ToRole="Buyer" />
     <NavigationProperty Name="Employee" Relationship="Self.FK_Order_Employee" FromRole="Order" ToRole="Employee" />
     <NavigationProperty Name="ShoppingCart" Relationship="Self.FK_Order_ShoppingCart" FromRole="Order" ToRole="ShoppingCart" />
+    <Property Name="DeliveryAddressId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Address" Relationship="Model.FK_Order_Address" FromRole="Order" ToRole="Address" />
   </EntityType>
   <EntityType Name="ShoppingCart">
     <Key>
@@ -116,9 +116,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" />
     <Property Name="GoodsId" Type="Int32" Nullable="false" />
     <Property Name="GoodsCount" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Buyer" Relationship="Self.FK_Buyer_ShoppingCart" FromRole="ShoppingCart" ToRole="Buyer" />
     <NavigationProperty Name="Goods" Relationship="Self.FK_ShoppingCart_Goods" FromRole="ShoppingCart" ToRole="Goods" />
-    <NavigationProperty Name="Order" Relationship="Self.FK_Order_ShoppingCart" FromRole="ShoppingCart" ToRole="Order" />
   </EntityType>
   <Association Name="FK_Buyer_Address">
     <End Role="Address" Type="Self.Address" Multiplicity="1" />
@@ -298,5 +296,21 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <AssociationSet Name="FK_Order_Address" Association="Model.FK_Order_Address">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_Order_Address">
+    <End Type="Model.Address" Role="Address" Multiplicity="1" />
+    <End Type="Model.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="DeliveryAddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

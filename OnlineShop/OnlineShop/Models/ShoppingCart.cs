@@ -14,21 +14,10 @@ namespace OnlineShop.Models
     
     public partial class ShoppingCart
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ShoppingCart()
-        {
-            this.Buyer = new HashSet<Buyer>();
-            this.Order = new HashSet<Order>();
-        }
-    
         public int Id { get; set; }
         public int GoodsId { get; set; }
         public int GoodsCount { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Buyer> Buyer { get; set; }
         public virtual Goods Goods { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
     }
 }

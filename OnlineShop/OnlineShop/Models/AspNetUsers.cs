@@ -17,10 +17,8 @@ namespace OnlineShop.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AspNetUsers()
         {
-            this.Buyer = new HashSet<Buyer>();
-            this.Employee = new HashSet<Employee>();
-            this.Message = new HashSet<Message>();
-            this.Message1 = new HashSet<Message>();
+            this.MessageRecepient = new HashSet<Message>();
+            this.MessageSender = new HashSet<Message>();
             this.AspNetRoles = new HashSet<AspNetRoles>();
         }
     
@@ -42,13 +40,9 @@ namespace OnlineShop.Models
         public string Discriminator { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Buyer> Buyer { get; set; }
+        public virtual ICollection<Message> MessageRecepient { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employee { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Message> Message { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Message> Message1 { get; set; }
+        public virtual ICollection<Message> MessageSender { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
     }

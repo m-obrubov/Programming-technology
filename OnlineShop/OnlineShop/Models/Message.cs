@@ -19,7 +19,7 @@ namespace OnlineShop.Models
         public string Sender { get; set; }
         public string Recepient { get; set; }
     
-        public virtual AspNetUsers AspNetUsers { get; set; }
-        public virtual AspNetUsers AspNetUsers1 { get; set; }
+        public virtual AspNetUsers AspNetUsersRecepient { get; set; }
+        public virtual AspNetUsers AspNetUsersSender { get; set; }
     }
 }

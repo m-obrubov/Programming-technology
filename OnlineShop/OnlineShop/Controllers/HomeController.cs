@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using OnlineShop.DAO;
 
 namespace OnlineShop.Controllers
 {
@@ -12,7 +13,7 @@ namespace OnlineShop.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View(new UserDAO().GetAll());
         }
 
         public ActionResult About()

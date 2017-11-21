@@ -67,6 +67,7 @@
     <EntitySetMapping Name="Goods">
       <EntityTypeMapping TypeName="Model.Goods">
         <MappingFragment StoreEntitySet="Goods">
+          <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Size" ColumnName="Size" />
@@ -88,6 +89,7 @@
     <EntitySetMapping Name="Order">
       <EntityTypeMapping TypeName="Model.Order">
         <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="DeliveryAddressId" ColumnName="DeliveryAddressId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
