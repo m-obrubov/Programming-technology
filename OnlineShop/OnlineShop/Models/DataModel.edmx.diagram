@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f6c055099f12478c8b4e6b17eeb8b0dd" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="Model.Address" Width="1.5" PointX="7.625" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetRoles" Width="1.5" PointX="1.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUsers" Width="1.5" PointX="1.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Buyer" Width="1.5" PointX="3.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Employee" Width="1.5" PointX="3.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Goods" Width="1.5" PointX="3.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Message" Width="1.5" PointX="1.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Order" Width="1.5" PointX="7.625" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ShoppingCart" Width="1.5" PointX="6.125" PointY="11.625" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Buyer_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Buyer_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Employee_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_MessageRecepient_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_MessageSender_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Buyer_ShoppingCart" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Order_Buyer" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Order_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ShoppingCart_Goods" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Order_ShoppingCart" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
