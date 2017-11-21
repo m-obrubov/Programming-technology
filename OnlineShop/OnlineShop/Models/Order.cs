@@ -22,24 +22,11 @@ namespace OnlineShop.Models
         public short PaymentType { get; set; }
         public bool IsPayed { get; set; }
         public decimal TotalCost { get; set; }
+        public int DeliveryAddressId { get; set; }
     
         public virtual Buyer Buyer { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual ShoppingCart ShoppingCart { get; set; }
-    }
-
-    public enum OrderStatus
-    {
-        Created,
-        Confirmed,
-        WaitingForPayment,
-        Delivering,
-        Delivered,
-        Cancelled
-    }
-
-    public enum PaymentType
-    {
-
+        public virtual Address Address { get; set; }
     }
 }

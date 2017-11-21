@@ -153,7 +153,8 @@ namespace OnlineShop.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, Surname = model.Surname, Birthdate = model.Birthdate, PhoneNumber = model.PhoneNumber };
                 var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                var roleResult = await UserManager.AddToRoleAsync(user.Id, "Buyer");
+                if (result.Succeeded && roleResult.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     

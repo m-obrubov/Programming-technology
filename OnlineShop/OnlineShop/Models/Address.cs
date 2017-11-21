@@ -18,6 +18,7 @@ namespace OnlineShop.Models
         public Address()
         {
             this.Buyer = new HashSet<Buyer>();
+            this.Order = new HashSet<Order>();
         }
     
         public int Id { get; set; }
@@ -31,5 +32,7 @@ namespace OnlineShop.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Buyer> Buyer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Order { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="Id" />
@@ -52,7 +52,7 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="Buyer">
           <Key>
@@ -80,6 +80,7 @@
           <Property Name="Size" Type="int" Nullable="false" />
           <Property Name="Count" Type="int" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="Image" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -99,6 +100,7 @@
           <Property Name="BuyerId" Type="int" Nullable="false" />
           <Property Name="ManagerId" Type="int" Nullable="false" />
           <Property Name="ShoppingCartId" Type="int" Nullable="false" />
+          <Property Name="DeliveryAddressId" Type="int" Nullable="false" />
           <Property Name="PaymentType" Type="smallint" Nullable="false" />
           <Property Name="IsPayed" Type="bit" Nullable="false" />
           <Property Name="TotalCost" Type="decimal" Precision="7" Scale="2" Nullable="false" />
@@ -211,6 +213,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Order_Address">
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="DeliveryAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Order_Buyer">
           <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -302,6 +316,10 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Message" EntitySet="Message" />
           </AssociationSet>
+          <AssociationSet Name="FK_Order_Address" Association="Self.FK_Order_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
           <AssociationSet Name="FK_Order_Buyer" Association="Self.FK_Order_Buyer">
             <End Role="Buyer" EntitySet="Buyer" />
             <End Role="Order" EntitySet="Order" />
@@ -319,8 +337,7 @@
             <End Role="ShoppingCart" EntitySet="ShoppingCart" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -337,6 +354,7 @@
           <Property Name="House" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Flat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Buyer" Relationship="Self.FK_Buyer_Address" FromRole="Address" ToRole="Buyer" />
+          <NavigationProperty Name="Order" Relationship="Model.FK_Order_Address" FromRole="Address" ToRole="Order" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -365,7 +383,7 @@
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Buyer" Relationship="Self.FK_Buyer_AspNetUsers" FromRole="AspNetUsers" ToRole="Buyer" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_AspNetUsers" FromRole="AspNetUsers" ToRole="Employee" />
           <NavigationProperty Name="Message" Relationship="Self.FK_MessageRecepient_User" FromRole="AspNetUsers" ToRole="Message" />
@@ -405,6 +423,7 @@
           <Property Name="Count" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
           <NavigationProperty Name="ShoppingCart" Relationship="Self.FK_ShoppingCart_Goods" FromRole="Goods" ToRole="ShoppingCart" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -432,6 +451,8 @@
           <NavigationProperty Name="Buyer" Relationship="Self.FK_Order_Buyer" FromRole="Order" ToRole="Buyer" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Order_Employee" FromRole="Order" ToRole="Employee" />
           <NavigationProperty Name="ShoppingCart" Relationship="Self.FK_Order_ShoppingCart" FromRole="Order" ToRole="ShoppingCart" />
+          <Property Name="DeliveryAddressId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="Model.FK_Order_Address" FromRole="Order" ToRole="Address" />
         </EntityType>
         <EntityType Name="ShoppingCart">
           <Key>
@@ -622,7 +643,23 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <AssociationSet Name="FK_Order_Address" Association="Model.FK_Order_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Order_Address">
+          <End Type="Model.Address" Role="Address" Multiplicity="1" />
+          <End Type="Model.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="DeliveryAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -695,6 +732,7 @@
           <EntitySetMapping Name="Goods">
             <EntityTypeMapping TypeName="Model.Goods">
               <MappingFragment StoreEntitySet="Goods">
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Size" ColumnName="Size" />
@@ -716,6 +754,7 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="Model.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="DeliveryAddressId" ColumnName="DeliveryAddressId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />

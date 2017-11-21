@@ -25,6 +25,7 @@
         <AssociationConnector Association="Model.FK_ShoppingCart_Goods" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Order_ShoppingCart" ManuallyRouted="false" />
         <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Order_Address" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
