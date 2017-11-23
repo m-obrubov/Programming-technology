@@ -31,8 +31,6 @@ namespace OnlineShop.DAO
         {
             Goods current = entities.Goods.FirstOrDefault(n => n.Id == input.Id);
             current.Name = input.Name;
-            current.Size = input.Size;
-            current.Count = input.Count;
             current.Price = input.Price;
             current.Image = input.Image;
             return entities.SaveChanges() == 1 ? true : false;

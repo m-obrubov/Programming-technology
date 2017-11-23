@@ -70,8 +70,6 @@
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Size" ColumnName="Size" />
-          <ScalarProperty Name="Count" ColumnName="Count" />
           <ScalarProperty Name="Price" ColumnName="Price" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -118,5 +116,15 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Size">
+      <EntityTypeMapping TypeName="Model.Size">
+        <MappingFragment StoreEntitySet="Size">
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="SizeName" ColumnName="Size" />
+          <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

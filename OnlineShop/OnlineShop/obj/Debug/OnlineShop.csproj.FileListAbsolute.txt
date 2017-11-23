@@ -88,3 +88,9 @@ D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop\obj\
 D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop\obj\Debug\OnlineShop.csproj.CoreCompileInputs.cache
 D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop\obj\Debug\OnlineShop.dll
 D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop\obj\Debug\OnlineShop.pdb
+D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop\bin\MvcSiteMapProvider.dll
+D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop\bin\MvcSiteMapProvider.WebActivator.dll
+D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop\bin\WebActivatorEx.dll
+D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop\bin\Microsoft.Web.Administration.dll
+D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop\bin\MvcSiteMapProvider.xml
+D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop\bin\MvcSiteMapProvider.WebActivator.xml

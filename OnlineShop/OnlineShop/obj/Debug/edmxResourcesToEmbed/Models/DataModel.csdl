@@ -74,11 +74,10 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="Size" Type="Int32" Nullable="false" />
-    <Property Name="Count" Type="Int32" Nullable="false" />
     <Property Name="Price" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
     <NavigationProperty Name="ShoppingCart" Relationship="Self.FK_ShoppingCart_Goods" FromRole="Goods" ToRole="ShoppingCart" />
     <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="SizeName" Relationship="Model.FK_Size_Goods" FromRole="Goods" ToRole="Size" />
   </EntityType>
   <EntityType Name="Message">
     <Key>
@@ -300,6 +299,11 @@
       <End Role="Address" EntitySet="Address" />
       <End Role="Order" EntitySet="Order" />
     </AssociationSet>
+    <EntitySet Name="Size" EntityType="Model.Size" />
+    <AssociationSet Name="FK_Size_Goods" Association="Model.FK_Size_Goods">
+      <End Role="Goods" EntitySet="Goods" />
+      <End Role="Size" EntitySet="Size" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK_Order_Address">
     <End Type="Model.Address" Role="Address" Multiplicity="1" />
@@ -310,6 +314,28 @@
       </Principal>
       <Dependent Role="Order">
         <PropertyRef Name="DeliveryAddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Size">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GoodsId" Type="Int32" Nullable="false" />
+    <Property Name="SizeName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Count" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Goods" Relationship="Model.FK_Size_Goods" FromRole="Size" ToRole="Goods" />
+  </EntityType>
+  <Association Name="FK_Size_Goods">
+    <End Type="Model.Goods" Role="Goods" Multiplicity="1" />
+    <End Type="Model.Size" Role="Size" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Size">
+        <PropertyRef Name="GoodsId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
