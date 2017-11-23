@@ -7,6 +7,10 @@ namespace OnlineShop.DAO
 {
     public class AddressDAO : AbstractDAO<Address, int>
     {
+        public AddressDAO() : base()
+        {
+        }
+
         public override bool Create(Address input)
         {
             entities.Address.Add(input);

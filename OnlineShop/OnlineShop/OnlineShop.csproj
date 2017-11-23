@@ -236,6 +236,7 @@
     <Compile Include="Models\Employee.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Enumerations.cs" />
     <Compile Include="Models\Goods.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
