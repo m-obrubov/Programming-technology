@@ -58,7 +58,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ShoppingCartId" Type="int" Nullable="false" />
           <Property Name="AddressId" Type="int" Nullable="false" />
@@ -67,7 +67,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" />
           <Property Name="MonthSalary" Type="decimal" Precision="7" Scale="2" />
         </EntityType>
@@ -77,8 +77,6 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Size" Type="int" Nullable="false" />
-          <Property Name="Count" Type="int" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="7" Scale="2" Nullable="false" />
           <Property Name="Image" Type="varbinary(max)" />
         </EntityType>
@@ -95,7 +93,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Status" Type="smallint" Nullable="false" />
           <Property Name="BuyerId" Type="int" Nullable="false" />
           <Property Name="ManagerId" Type="int" Nullable="false" />
@@ -109,9 +107,18 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GoodsId" Type="int" Nullable="false" />
           <Property Name="GoodsCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GoodsId" Type="int" Nullable="false" />
+          <Property Name="Size" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Buyer_Address">
           <End Role="Address" Type="Self.Address" Multiplicity="1" />
@@ -273,6 +280,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Size_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="Size" Type="Self.Size" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Size">
+              <PropertyRef Name="GoodsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -284,6 +303,7 @@
           <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShoppingCart" EntityType="Self.ShoppingCart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Buyer_Address" Association="Self.FK_Buyer_Address">
             <End Role="Address" EntitySet="Address" />
             <End Role="Buyer" EntitySet="Buyer" />
@@ -335,6 +355,10 @@
           <AssociationSet Name="FK_ShoppingCart_Goods" Association="Self.FK_ShoppingCart_Goods">
             <End Role="Goods" EntitySet="Goods" />
             <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Size_Goods" Association="Self.FK_Size_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Size" EntitySet="Size" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -415,11 +439,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Size" Type="Int32" Nullable="false" />
-          <Property Name="Count" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
           <NavigationProperty Name="ShoppingCart" Relationship="Self.FK_ShoppingCart_Goods" FromRole="Goods" ToRole="ShoppingCart" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="SizeName" Relationship="Model.FK_Size_Goods" FromRole="Goods" ToRole="Size" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -641,6 +664,11 @@
             <End Role="Address" EntitySet="Address" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
+          <EntitySet Name="Size" EntityType="Model.Size" />
+          <AssociationSet Name="FK_Size_Goods" Association="Model.FK_Size_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Size" EntitySet="Size" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_Order_Address">
           <End Type="Model.Address" Role="Address" Multiplicity="1" />
@@ -651,6 +679,28 @@
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="DeliveryAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GoodsId" Type="Int32" Nullable="false" />
+          <Property Name="SizeName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Goods" Relationship="Model.FK_Size_Goods" FromRole="Size" ToRole="Goods" />
+        </EntityType>
+        <Association Name="FK_Size_Goods">
+          <End Type="Model.Goods" Role="Goods" Multiplicity="1" />
+          <End Type="Model.Size" Role="Size" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Size">
+              <PropertyRef Name="GoodsId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -729,8 +779,6 @@
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Size" ColumnName="Size" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -777,6 +825,16 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Size">
+            <EntityTypeMapping TypeName="Model.Size">
+              <MappingFragment StoreEntitySet="Size">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="SizeName" ColumnName="Size" />
+                <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

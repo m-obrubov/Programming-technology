@@ -18,16 +18,17 @@ namespace OnlineShop.Models
         public Goods()
         {
             this.ShoppingCart = new HashSet<ShoppingCart>();
+            this.SizeName = new HashSet<Size>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Size { get; set; }
-        public int Count { get; set; }
         public decimal Price { get; set; }
         public byte[] Image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShoppingCart> ShoppingCart { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Size> SizeName { get; set; }
     }
 }

@@ -34,5 +34,6 @@ namespace OnlineShop.Models
         public virtual DbSet<Message> Message { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<ShoppingCart> ShoppingCart { get; set; }
+        public virtual DbSet<Size> Size { get; set; }
     }
 }
