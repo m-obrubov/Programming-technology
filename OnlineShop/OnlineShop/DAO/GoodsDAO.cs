@@ -23,7 +23,7 @@ namespace OnlineShop.DAO
             return entities.SaveChanges() == 1 ? true : false;
         }
 
-        public override IEnumerable<Goods> GetAll() => entities.Goods.Select(n => n);
+        public override IEnumerable<Goods> GetAll() => entities.Goods;
 
         public override Goods GetById(int id) => entities.Goods.FirstOrDefault(n => n.Id == id);
 

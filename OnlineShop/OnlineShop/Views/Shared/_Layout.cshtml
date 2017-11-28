@@ -23,14 +23,16 @@
                     @Html.ActionLink("Интернет-магазин", "Index", "Goods", new { area = "" }, new { @class = "navbar-brand" })
                 </div>
                 <div class="navbar-collapse collapse">
+                    @Html.MvcSiteMap().Menu()
                     @Html.Partial("_LoginPartial")
                 </div>
-            </div>
-            <div class="navbar-collapse collapse">
-                @Html.MvcSiteMap().Menu()
+                    
+                
             </div>
         </div>
     </div>
+    <br />
+    <br />
     <div class="container body-content">
             @RenderBody()
         <hr />

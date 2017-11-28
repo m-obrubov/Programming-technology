@@ -13,6 +13,7 @@ namespace OnlineShop.Controllers
         // GET: Goods
         public ActionResult Index()
         {
+            
             return View(goodsDAO.GetAll());
         }
 
