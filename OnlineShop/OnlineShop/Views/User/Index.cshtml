@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<OnlineShop.Models.AspNetUsers>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Пользователи";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Пользователи</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить", "Create")
 </p>
 <table class="table">
     <tr>
@@ -66,9 +66,9 @@
             }
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            @Html.ActionLink("Изменить", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Просмотреть детали", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
         </td>
        
     </tr>

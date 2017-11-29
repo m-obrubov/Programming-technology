@@ -13,7 +13,7 @@ namespace OnlineShop.Controllers
     {
         public ActionResult Index()
         {
-            return View(new UserDAO().GetAll());
+            return View();
         }
 
         public ActionResult About()

@@ -1,41 +1,41 @@
-﻿using System;
+﻿using OnlineShop.DAO;
+using OnlineShop.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using OnlineShop.DAO;
 
 namespace OnlineShop.Controllers
 {
-    public class GoodsController : Controller
+    public class UserController : Controller
     {
-        GoodsDAO goodsDAO = new GoodsDAO();
-        // GET: Goods
+        private UserDAO userDAO = new UserDAO();
+        // GET: User
         public ActionResult Index()
         {
-            return View(goodsDAO.GetAll());
+            return View(userDAO.GetAll());
         }
 
-        // GET: Goods/Details/5
+        // GET: User/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Goods/Create
+        // GET: User/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Goods/Create
+        // POST: User/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(AspNetUsers user)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                userDAO.Create(user);
                 return RedirectToAction("Index");
             }
             catch
@@ -44,19 +44,19 @@ namespace OnlineShop.Controllers
             }
         }
 
-        // GET: Goods/Edit/5
+        // GET: User/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Goods/Edit/5
+        // POST: User/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, AspNetUsers user)
         {
             try
             {
-                // TODO: Add update logic here
+                userDAO.Update(user);
 
                 return RedirectToAction("Index");
             }
@@ -66,19 +66,19 @@ namespace OnlineShop.Controllers
             }
         }
 
-        // GET: Goods/Delete/5
+        // GET: User/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Goods/Delete/5
+        // POST: User/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, AspNetUsers user)
         {
             try
             {
-                // TODO: Add delete logic here
+                userDAO.Delete(user);
 
                 return RedirectToAction("Index");
             }
