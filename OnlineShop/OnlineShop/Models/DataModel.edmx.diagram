@@ -28,7 +28,7 @@
         </AssociationConnector>
         <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Order_Address" />
-        <EntityTypeShape EntityType="Model.Size" Width="1.5" PointX="8.375" PointY="12" />
+        <EntityTypeShape EntityType="Model.Size" Width="1.5" PointX="8.375" PointY="11.75" />
         <AssociationConnector Association="Model.FK_Size_Goods" />
       </Diagram>
     </edmx:Diagrams>

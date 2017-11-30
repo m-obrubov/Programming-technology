@@ -1,10 +1,14 @@
-﻿using OnlineShop.DAO;
+﻿
+using OnlineShop.DAO;
 using OnlineShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 
 namespace OnlineShop.Controllers
 {
@@ -18,41 +22,38 @@ namespace OnlineShop.Controllers
         }
 
         // GET: User/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            return View(userDAO.GetById(id));
         }
 
         // GET: User/Create
         public ActionResult Create()
         {
-            return View();
+            return RedirectToAction("Register", "Account");
         }
 
-        // POST: User/Create
         [HttpPost]
-        public ActionResult Create(AspNetUsers user)
+        public ActionResult Create(RegisterViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                userDAO.Create(user);
-                return RedirectToAction("Index");
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, Surname = model.Surname, Birthdate = model.Birthdate, PhoneNumber = model.PhoneNumber };
+                var result = new AccountController().UserManager.CreateAsync(user, model.Password);
+                return RedirectToAction("Index", "User");
             }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
 
         // GET: User/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            return View(userDAO.GetById(id));
         }
 
         // POST: User/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, AspNetUsers user)
+        public ActionResult Edit(AspNetUsers user)
         {
             try
             {
@@ -67,14 +68,14 @@ namespace OnlineShop.Controllers
         }
 
         // GET: User/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            return View(userDAO.GetById(id));
         }
 
         // POST: User/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, AspNetUsers user)
+        public ActionResult Delete(AspNetUsers user)
         {
             try
             {

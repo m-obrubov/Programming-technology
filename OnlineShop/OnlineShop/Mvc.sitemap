@@ -3,9 +3,8 @@
             xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
-  <mvcSiteMapNode title="Home" controller="Home" action="Index">
+  <mvcSiteMapNode title="Главная" controller="Home" action="Index">
     <mvcSiteMapNode title="Пользователи" controller="User" action="Index"/>
-    <mvcSiteMapNode title="Contact" controller="Home" action="Contact"/>
   </mvcSiteMapNode>
 
 </mvcSiteMap>
