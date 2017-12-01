@@ -172,6 +172,30 @@ namespace OnlineShop.Controllers
             // Появление этого сообщения означает наличие ошибки; повторное отображение формы
             return View(model);
         }
+        
+        public ActionResult RegisterByAdmin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterByAdmin(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, Surname = model.Surname, Birthdate = model.Birthdate, PhoneNumber = model.PhoneNumber };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "User");
+                }
+                AddErrors(result);
+            }
+            // Появление этого сообщения означает наличие ошибки; повторное отображение формы
+            return View("Register", model);
+        }
 
         //
         // GET: /Account/ConfirmEmail

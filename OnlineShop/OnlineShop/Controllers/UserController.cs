@@ -1,14 +1,7 @@
 ﻿
 using OnlineShop.DAO;
 using OnlineShop.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 
 namespace OnlineShop.Controllers
 {
@@ -30,19 +23,7 @@ namespace OnlineShop.Controllers
         // GET: User/Create
         public ActionResult Create()
         {
-            return RedirectToAction("Register", "Account");
-        }
-
-        [HttpPost]
-        public ActionResult Create(RegisterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, Surname = model.Surname, Birthdate = model.Birthdate, PhoneNumber = model.PhoneNumber };
-                var result = new AccountController().UserManager.CreateAsync(user, model.Password);
-                return RedirectToAction("Index", "User");
-            }
-            return View();
+            return RedirectToAction("RegisterByAdmin", "Account");
         }
 
         // GET: User/Edit/5
