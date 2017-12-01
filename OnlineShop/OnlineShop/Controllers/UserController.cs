@@ -66,7 +66,7 @@ namespace OnlineShop.Controllers
             }
             catch
             {
-                return View();
+                return View(user);
             }
         }
     }

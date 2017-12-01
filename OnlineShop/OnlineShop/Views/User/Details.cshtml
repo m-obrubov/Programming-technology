@@ -1,11 +1,10 @@
 ﻿@model OnlineShop.Models.AspNetUsers
-
 <div>
-    <h4>Детали пользователя @Html.DisplayFor(model => model.UserName)</h4>
+    <h4>Информация о пользователе @Html.DisplayFor(model => model.UserName)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            Имя
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
@@ -13,7 +12,7 @@
         </dd>
 
         <dt>
-            Фамилия
+            @Html.DisplayNameFor(model => model.Surname)
         </dt>
 
         <dd>
@@ -21,7 +20,7 @@
         </dd>
 
         <dt>
-            Даиа рождения
+            @Html.DisplayNameFor(model => model.Birthdate)
         </dt>
 
         <dd>
@@ -29,15 +28,23 @@
         </dd>
 
         <dt>
-            Электронная почта
+            @Html.DisplayNameFor(model => model.Email)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
-        
+
         <dt>
-            Номер телефона
+            @Html.DisplayNameFor(model => model.EmailConfirmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailConfirmed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
         </dt>
 
         <dd>
@@ -45,12 +52,45 @@
         </dd>
 
         <dt>
-            Блокировка
+            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumberConfirmed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LockoutEndDateUtc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LockoutEnabled)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.LockoutEnabled)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccessFailedCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccessFailedCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
 
     </dl>
 </div>

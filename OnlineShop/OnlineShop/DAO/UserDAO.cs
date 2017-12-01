@@ -18,7 +18,8 @@ namespace OnlineShop.DAO
 
         public override bool Delete(AspNetUsers input)
         {
-            entities.AspNetUsers.Remove(input);
+            AspNetUsers user = entities.AspNetUsers.FirstOrDefault(n => n.Id == input.Id);
+            entities.AspNetUsers.Remove(user);
             return entities.SaveChanges() == 1 ? true : false;
         }
 
@@ -33,7 +34,8 @@ namespace OnlineShop.DAO
             current.Surname = input.Surname;
             current.Email = input.Email;
             current.PhoneNumber = input.PhoneNumber;
-            current.PasswordHash = input.PasswordHash;
+            current.PhoneNumberConfirmed = input.PhoneNumberConfirmed;
+            current.LockoutEnabled = input.LockoutEnabled;
             return entities.SaveChanges() == 1 ? true : false;
         }
     }

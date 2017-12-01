@@ -11,7 +11,8 @@ namespace OnlineShop.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class AspNetUsers
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,19 +24,51 @@ namespace OnlineShop.Models
         }
     
         public string Id { get; set; }
+
+        [Required]
+        [Display(Name = "Имя")]
         public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Фамилия")]
         public string Surname { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Дата рождения")]
         public System.DateTime Birthdate { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Адрес электронной почты")]
         public string Email { get; set; }
+
+        [Display(Name = "Подтверждение электронной почты")]
         public bool EmailConfirmed { get; set; }
         public string PasswordHash { get; set; }
         public string SecurityStamp { get; set; }
+
+        [Required]
+        [Phone]
+        [Display(Name = "Номер телефона")]
         public string PhoneNumber { get; set; }
+
+        [Display(Name = "Подтверждение номера телефона")]
         public bool PhoneNumberConfirmed { get; set; }
+
+        [Display(Name = "Двухфакторная аутентификация")]
         public bool TwoFactorEnabled { get; set; }
+
+        [Display(Name = "Дата окончания блокировки")]
         public Nullable<System.DateTime> LockoutEndDateUtc { get; set; }
+
+        [Display(Name = "Блокировка")]
         public bool LockoutEnabled { get; set; }
+
+        [Display(Name = "Количество неудачных попыток входа")]
         public int AccessFailedCount { get; set; }
+
+        [Display(Name = "Имя пользователя")]
         public string UserName { get; set; }
         public string Discriminator { get; set; }
     
