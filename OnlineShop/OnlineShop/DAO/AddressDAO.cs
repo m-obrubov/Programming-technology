@@ -13,7 +13,15 @@ namespace OnlineShop.DAO
 
         public override bool Create(Address input)
         {
+
             entities.Address.Add(input);
+            return entities.SaveChanges() == 1 ? true : false;
+        }
+
+        public bool Create(int buyerId, Address input)
+        {
+            Buyer buyer = entities.Buyer.FirstOrDefault(n => n.Id == buyerId);
+            buyer.Address = input;
             return entities.SaveChanges() == 1 ? true : false;
         }
 
