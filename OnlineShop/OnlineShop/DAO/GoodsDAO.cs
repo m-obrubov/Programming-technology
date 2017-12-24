@@ -17,7 +17,8 @@ namespace OnlineShop.DAO
 
         public bool Delete(Goods input)
         {
-            entities.Goods.Remove(input);
+            Goods rmGoods = entities.Goods.FirstOrDefault(n => n.Id == input.Id);
+            entities.Goods.Remove(rmGoods);
             return entities.SaveChanges() == 1 ? true : false;
         }
 
