@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using OnlineShop.Models;
 
@@ -35,6 +36,11 @@ namespace OnlineShop.DAO
             current.PhoneNumberConfirmed = input.PhoneNumberConfirmed;
             current.LockoutEnabled = input.LockoutEnabled;
             return entities.SaveChanges() == 1 ? true : false;
+        }
+
+        public AspNetUsers GetByIdWithRoles(string id)
+        {
+            return entities.AspNetUsers.Include("AspNetRoles").FirstOrDefault(n => n.Id == id);
         }
     }
 }

@@ -39,13 +39,23 @@ namespace OnlineShop.Controllers
             try
             {
                 userDAO.Update(user);
-
                 return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
+        }
+
+        public ActionResult ChangeRole(string id)
+        {
+            return View(userDAO.GetByIdWithRoles(id));
+        }
+
+        public ActionResult ChangeRole(string id, AspNetUsers user)
+        {
+            ViewData["userId"] = id;
+            return View(userDAO.GetByIdWithRoles(id));
         }
 
         // GET: User/Delete/5
@@ -61,7 +71,6 @@ namespace OnlineShop.Controllers
             try
             {
                 userDAO.Delete(user);
-
                 return RedirectToAction("Index");
             }
             catch

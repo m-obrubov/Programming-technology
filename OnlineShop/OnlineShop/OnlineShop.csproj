@@ -207,6 +207,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="DAO\AddressDAO.cs" />
     <Compile Include="DAO\SizeDAO.cs" />
     <Compile Include="DAO\UserDAO.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="DAO\GoodsDAO.cs" />
     <Compile Include="DAO\MessageDAO.cs" />
     <Compile Include="DAO\OrderDAO.cs" />
+    <Compile Include="DAO\UserRoleDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -375,6 +377,9 @@
     <Content Include="Views\Goods\Create.cshtml" />
     <Content Include="Views\Goods\Edit.cshtml" />
     <Content Include="Views\Goods\Delete.cshtml" />
+    <Content Include="Views\UserRole\Index.cshtml" />
+    <Content Include="Views\UserRole\Add.cshtml" />
+    <Content Include="Views\UserRole\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
