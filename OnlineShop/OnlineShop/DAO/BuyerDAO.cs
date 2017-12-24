@@ -5,33 +5,32 @@ using OnlineShop.Models;
 
 namespace OnlineShop.DAO
 {
-    public class BuyerDAO : AbstractDAO<Buyer, int>
+    public class BuyerDAO
     {
-        public BuyerDAO() : base()
-        {
-        }
+        private Entities entities = new Entities();
 
-        public override bool Create(Buyer input)
+        public bool Create(string id)
         {
-            entities.Buyer.Add(input);
+            Buyer buyer = new Buyer();
+            buyer.UserId = id;
+            entities.Buyer.Add(buyer);
             return entities.SaveChanges() == 1 ? true : false;
         }
 
-        public override bool Delete(Buyer input)
+        public bool Delete(Buyer input)
         {
             entities.Buyer.Remove(input);
             return entities.SaveChanges() == 1 ? true : false;
         }
 
-        public override IEnumerable<Buyer> GetAll() => entities.Buyer.Select(n => n);
+        public IEnumerable<Buyer> GetAll() => entities.Buyer.Select(n => n);
 
-        public override Buyer GetById(int id) => entities.Buyer.FirstOrDefault(n => n.Id == id);
+        public Buyer GetById(string id) => entities.Buyer.FirstOrDefault(n => n.UserId == id);
 
-        public override bool Update(Buyer input)
+        public bool Update(Buyer input)
         {
-            Buyer current = entities.Buyer.FirstOrDefault(n => n.Id == input.Id);
-            current.ShoppingCartId = input.ShoppingCartId;
-            current.AddressId = input.AddressId;
+            Buyer current = entities.Buyer.FirstOrDefault(n => n.UserId == input.UserId);
+            current.Address = input.Address;
             return entities.SaveChanges() == 1 ? true : false;
         }
     }

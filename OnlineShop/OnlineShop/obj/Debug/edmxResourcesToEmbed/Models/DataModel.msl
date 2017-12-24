@@ -4,7 +4,7 @@
     <EntitySetMapping Name="Address">
       <EntityTypeMapping TypeName="Model.Address">
         <MappingFragment StoreEntitySet="Address">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Postcode" ColumnName="Postcode" />
           <ScalarProperty Name="Country" ColumnName="Country" />
           <ScalarProperty Name="Region" ColumnName="Region" />
@@ -48,17 +48,13 @@
     <EntitySetMapping Name="Buyer">
       <EntityTypeMapping TypeName="Model.Buyer">
         <MappingFragment StoreEntitySet="Buyer">
-          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="ShoppingCartId" ColumnName="ShoppingCartId" />
-          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Employee">
       <EntityTypeMapping TypeName="Model.Employee">
         <MappingFragment StoreEntitySet="Employee">
-          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="MonthSalary" ColumnName="MonthSalary" />
         </MappingFragment>
@@ -67,10 +63,10 @@
     <EntitySetMapping Name="Goods">
       <EntityTypeMapping TypeName="Model.Goods">
         <MappingFragment StoreEntitySet="Goods">
-          <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -87,12 +83,12 @@
     <EntitySetMapping Name="Order">
       <EntityTypeMapping TypeName="Model.Order">
         <MappingFragment StoreEntitySet="Order">
-          <ScalarProperty Name="DeliveryAddressId" ColumnName="DeliveryAddressId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
           <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
           <ScalarProperty Name="ShoppingCartId" ColumnName="ShoppingCartId" />
+          <ScalarProperty Name="DeliveryAddressId" ColumnName="DeliveryAddressId" />
           <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
           <ScalarProperty Name="IsPayed" ColumnName="IsPayed" />
           <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
@@ -108,6 +104,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Size">
+      <EntityTypeMapping TypeName="Model.Size">
+        <MappingFragment StoreEntitySet="Size">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
+          <ScalarProperty Name="SizeName" ColumnName="SizeName" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetRoles">
         <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -116,15 +122,5 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="Size">
-      <EntityTypeMapping TypeName="Model.Size">
-        <MappingFragment StoreEntitySet="Size">
-          <ScalarProperty Name="Count" ColumnName="Count" />
-          <ScalarProperty Name="SizeName" ColumnName="Size" />
-          <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

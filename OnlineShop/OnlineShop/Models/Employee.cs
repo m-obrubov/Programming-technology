@@ -20,7 +20,6 @@ namespace OnlineShop.Models
             this.Order = new HashSet<Order>();
         }
     
-        public int Id { get; set; }
         public string UserId { get; set; }
         public Nullable<decimal> MonthSalary { get; set; }
     

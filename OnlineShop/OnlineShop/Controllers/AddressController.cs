@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace OnlineShop.Controllers
 {
@@ -24,19 +25,20 @@ namespace OnlineShop.Controllers
         }
 
         // GET: Address/Create
-        public ActionResult Create(int id)
+        public ActionResult Create()
         {
-            return View(id);
+            return View();
         }
 
         // POST: Address/Create
         [HttpPost]
-        public ActionResult Create(int id, Address address)
+        public ActionResult Create(Address address)
         {
-                if(addressDAO.Create(id, address))
-                    return RedirectToAction("Home", "Index");
-                else
-                    return View();
+            address.UserId = User.Identity.GetUserId();
+            if (addressDAO.Create(address))
+                return RedirectToAction("Index", "Home");
+            else
+                return View();
         }
 
         // GET: Address/Edit/5

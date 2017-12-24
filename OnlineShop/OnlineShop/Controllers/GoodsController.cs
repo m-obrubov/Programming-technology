@@ -16,6 +16,12 @@ namespace OnlineShop.Controllers
             return View(goodsDAO.GetAll());
         }
 
+        // GET: Goods
+        public ActionResult IndexList()
+        {
+            return View(goodsDAO.GetAll());
+        }
+
         // GET: Goods/Details/5
         public ActionResult Details(int id)
         {

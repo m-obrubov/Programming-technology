@@ -11,71 +11,40 @@ namespace OnlineShop.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class AspNetUsers
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AspNetUsers()
         {
-            this.MessageRecepient = new HashSet<Message>();
-            this.MessageSender = new HashSet<Message>();
+            this.MessagesRecepient = new HashSet<Message>();
+            this.MessagesSender = new HashSet<Message>();
             this.AspNetRoles = new HashSet<AspNetRoles>();
         }
     
         public string Id { get; set; }
-
-        [Required]
-        [Display(Name = "Имя")]
         public string Name { get; set; }
-
-        [Required]
-        [Display(Name = "Фамилия")]
         public string Surname { get; set; }
-
-        [Required]
-        [DataType(DataType.Date)]
-        [Display(Name = "Дата рождения")]
         public System.DateTime Birthdate { get; set; }
-
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Адрес электронной почты")]
         public string Email { get; set; }
-
-        [Display(Name = "Подтверждение электронной почты")]
         public bool EmailConfirmed { get; set; }
         public string PasswordHash { get; set; }
         public string SecurityStamp { get; set; }
-
-        [Required]
-        [Phone]
-        [Display(Name = "Номер телефона")]
         public string PhoneNumber { get; set; }
-
-        [Display(Name = "Подтверждение номера телефона")]
         public bool PhoneNumberConfirmed { get; set; }
-
-        [Display(Name = "Двухфакторная аутентификация")]
         public bool TwoFactorEnabled { get; set; }
-
-        [Display(Name = "Дата окончания блокировки")]
         public Nullable<System.DateTime> LockoutEndDateUtc { get; set; }
-
-        [Display(Name = "Блокировка")]
         public bool LockoutEnabled { get; set; }
-
-        [Display(Name = "Количество неудачных попыток входа")]
         public int AccessFailedCount { get; set; }
-
-        [Display(Name = "Имя пользователя")]
         public string UserName { get; set; }
         public string Discriminator { get; set; }
     
+        public virtual Buyer Buyer { get; set; }
+        public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Message> MessageRecepient { get; set; }
+        public virtual ICollection<Message> MessagesRecepient { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Message> MessageSender { get; set; }
+        public virtual ICollection<Message> MessagesSender { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
     }

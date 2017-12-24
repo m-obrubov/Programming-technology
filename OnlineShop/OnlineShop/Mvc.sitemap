@@ -5,6 +5,7 @@
 
   <mvcSiteMapNode title="Главная" controller="Home" action="Index">
     <mvcSiteMapNode title="Пользователи" controller="User" action="Index"/>
+    <mvcSiteMapNode title="Товары" controller="Goods" action="IndexList" roles="Admin"/>
   </mvcSiteMapNode>
 
 </mvcSiteMap>

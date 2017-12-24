@@ -5,39 +5,29 @@ using OnlineShop.Models;
 
 namespace OnlineShop.DAO
 {
-    public class AddressDAO : AbstractDAO<Address, int>
+    public class AddressDAO
     {
-        public AddressDAO() : base()
-        {
-        }
+        private Entities entities = new Entities();
 
-        public override bool Create(Address input)
+        public bool Create(Address input)
         {
-
             entities.Address.Add(input);
             return entities.SaveChanges() == 1 ? true : false;
         }
 
-        public bool Create(int buyerId, Address input)
-        {
-            Buyer buyer = entities.Buyer.FirstOrDefault(n => n.Id == buyerId);
-            buyer.Address = input;
-            return entities.SaveChanges() == 1 ? true : false;
-        }
-
-        public override bool Delete(Address input)
+        public bool Delete(Address input)
         {
             entities.Address.Remove(input);
             return entities.SaveChanges() == 1 ? true : false;
         }
 
-        public override IEnumerable<Address> GetAll() => entities.Address;
+        public IEnumerable<Address> GetAll() => entities.Address;
 
-        public override Address GetById(int id) => entities.Address.FirstOrDefault(n => n.Id == id);
+        public Address GetById(string id) => entities.Address.FirstOrDefault(n => n.UserId == id);
 
-        public override bool Update(Address input)
+        public bool Update(Address input)
         {
-            Address current = entities.Address.FirstOrDefault(n => n.Id == input.Id);
+            Address current = entities.Address.FirstOrDefault(n => n.UserId == input.UserId);
             current.Postcode = input.Postcode;
             current.Country = input.Country;
             current.Region = input.Region;

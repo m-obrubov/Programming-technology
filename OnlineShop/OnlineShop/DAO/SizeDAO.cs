@@ -5,29 +5,25 @@ using OnlineShop.Models;
 
 namespace OnlineShop.DAO
 {
-    public class SizeDAO : AbstractDAO<Size, int>
+    public class SizeDAO
     {
-        public SizeDAO() : base()
-        {
-        }
+        private Entities entities = new Entities();
 
-        public override bool Create(Size input)
+        public bool Create(Size input)
         {
             entities.Size.Add(input);
             return entities.SaveChanges() == 1 ? true : false;
         }
 
-        public override bool Delete(Size input)
+        public bool Delete(Size input)
         {
             entities.Size.Remove(input);
             return entities.SaveChanges() == 1 ? true : false;
         }
 
-        public override IEnumerable<Size> GetAll() => entities.Size.Select(n => n);
+        public IEnumerable<Size> GetAll() => entities.Size.Select(n => n);
 
-        public override Size GetById(int id) => entities.Size.FirstOrDefault(n => n.Id == id);
-
-        public override bool Update(Size input) => false;
+        public Size GetById(int id) => entities.Size.FirstOrDefault(n => n.Id == id);
 
         public bool UpdateCount(string sizeName, int deltaCount)
         {
