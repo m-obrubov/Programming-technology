@@ -1,6 +1,4 @@
-﻿using OnlineShop.DAO;
-using OnlineShop.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,28 +6,49 @@ using System.Web.Mvc;
 
 namespace OnlineShop.Controllers
 {
-    public class BuyerController : Controller
+    public class OrderController : Controller
     {
-        private BuyerDAO buyerDAO = new BuyerDAO();
-        // GET: Buyer
+        // GET: Order
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Buyer/Details/5
+        // GET: Order/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Buyer/Edit/5
+        // GET: Order/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Order/Create
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Order/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Buyer/Edit/5
+        // POST: Order/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -45,13 +64,13 @@ namespace OnlineShop.Controllers
             }
         }
 
-        // GET: Buyer/Delete/5
+        // GET: Order/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Buyer/Delete/5
+        // POST: Order/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

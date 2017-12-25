@@ -35,6 +35,8 @@ namespace OnlineShop.Controllers
             {
                 AspNetRoles addRole = userRoleDAO.GetByName(role.Name);
                 userRoleDAO.AddRole(id, addRole);
+                if (role.Name.Equals("Manager") || role.Name.Equals("Admin"))
+                    new EmployeeDAO().Create(id);
                 return RedirectToAction("Index", "User");
             }
             catch
@@ -42,7 +44,6 @@ namespace OnlineShop.Controllers
                 return View();
             }
         }
-        
 
         // GET: UserRole/Delete/5
         public ActionResult Delete(string id, string name)
@@ -57,6 +58,8 @@ namespace OnlineShop.Controllers
             try
             {
                 userRoleDAO.RemoveRole(id, role);
+                if (role.Name.Equals("Manager") || role.Name.Equals("Admin"))
+                    new EmployeeDAO().Delete(id);
                 return RedirectToAction("Index", "User");
             }
             catch
