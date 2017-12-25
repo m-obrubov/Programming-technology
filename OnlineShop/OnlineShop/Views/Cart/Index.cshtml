@@ -1,0 +1,40 @@
+﻿@model IEnumerable<OnlineShop.Models.Goods>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+@{ decimal sum = 0; }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+            @{  sum += item.Price; }
+        </td>
+        <td>
+            @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+    <h2>Сумма товаров: @sum</h2>
+<br />
+@using (Html.BeginForm("Create", "Order", FormMethod.Post))
+{
+    <div class="form-group">
+        <div class="col-md-2">
+            <input type="submit" value="Создать заказ" class="btn btn-default" />
+        </div>
+    </div>
+}

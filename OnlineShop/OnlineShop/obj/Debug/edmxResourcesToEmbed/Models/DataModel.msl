@@ -100,17 +100,6 @@
         <MappingFragment StoreEntitySet="ShoppingCart">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
-          <ScalarProperty Name="GoodsCount" ColumnName="GoodsCount" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Size">
-      <EntityTypeMapping TypeName="Model.Size">
-        <MappingFragment StoreEntitySet="Size">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
-          <ScalarProperty Name="SizeName" ColumnName="SizeName" />
-          <ScalarProperty Name="Count" ColumnName="Count" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

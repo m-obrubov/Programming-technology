@@ -13,10 +13,10 @@
                         @Html.DisplayFor(modelItem => Model.ElementAt(i).Price)
                     </div>
                     <div class="col-md-12">
-                        @Html.ActionLink("Добавить в корзину", "Details", new { id = Model.ElementAt(i).Id })
+                                @Html.ActionLink("Добавить в корзину", "Details", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-default" })
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
             <div class="col-md-3 col-sm-6">
                 <div class="row">
                     <div class="col-md-9">
@@ -26,7 +26,7 @@
                         @Html.DisplayFor(modelItem => Model.ElementAt(i + 1).Price)
                     </div>
                     <div class="col-md-12">
-                        @Html.ActionLink("Добавить в корзину", "Details", new { id = Model.ElementAt(i + 1).Id })
+                        @Html.ActionLink("Добавить в корзину", "Details", new { id = Model.ElementAt(i + 1).Id }, new { @class = "btn-default" })
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                         @Html.DisplayFor(modelItem => Model.ElementAt(i + 2).Price)
                     </div>
                     <div class="col-md-12">
-                        @Html.ActionLink("Добавить в корзину", "Details", new { id = Model.ElementAt(i + 2).Id })
+                        @Html.ActionLink("Добавить в корзину", "Details", new { id = Model.ElementAt(i + 2).Id }, new { @class = "btn-default" })
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                         @Html.DisplayFor(modelItem => Model.ElementAt(i + 3).Price)
                     </div>
                     <div class="col-md-12">
-                        @Html.ActionLink("Добавить в корзину", "Details", new { id = Model.ElementAt(i + 3).Id })
+                        @Html.ActionLink("Добавить в корзину", "Details", new { id = Model.ElementAt(i + 3).Id }, new { @class = "btn-default" })
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                         @Html.DisplayFor(modelItem => Model.ElementAt(i).Price)
                     </div>
                     <div class="col-md-12">
-                        @Html.ActionLink("Добавить в корзину", "Details", new { id = Model.ElementAt(i).Id })
+                        @Html.ActionLink("Добавить в корзину", "Details", new { id = Model.ElementAt(i).Id }, new { @class = "btn-default" })
                     </div>
                 </div>
             </div>

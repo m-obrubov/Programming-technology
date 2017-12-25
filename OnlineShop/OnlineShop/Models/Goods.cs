@@ -18,7 +18,6 @@ namespace OnlineShop.Models
         public Goods()
         {
             this.ShoppingCart = new HashSet<ShoppingCart>();
-            this.Size = new HashSet<Size>();
         }
     
         public int Id { get; set; }
@@ -28,7 +27,5 @@ namespace OnlineShop.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShoppingCart> ShoppingCart { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Size> Size { get; set; }
     }
 }

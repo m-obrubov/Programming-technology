@@ -1,14 +1,18 @@
 ﻿@using Microsoft.AspNet.Identity
+@using OnlineShop.Models;
+@{ LocalShoppingCart currentCart = Session["ShoppingCart"] as LocalShoppingCart; }
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
-
+    
     <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Здравствуйте, " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
+        @if (User.IsInRole("Buyer"))
+        {
+            <li>@Html.ActionLink("В корзине - " + currentCart.GoodsInCart.Count, "Index", "Cart", routeValues: null, htmlAttributes: null)</li>
+        }
+        <li>@Html.ActionLink("Здравствуйте, " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: null)</li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
     </ul>
     }

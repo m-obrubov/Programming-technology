@@ -203,13 +203,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\BuyerController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\GoodsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="DAO\AddressDAO.cs" />
-    <Compile Include="DAO\SizeDAO.cs" />
     <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="DAO\BuyerDAO.cs" />
     <Compile Include="DAO\EmployeeDAO.cs" />
@@ -256,6 +256,7 @@
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityViewModels.cs" />
+    <Compile Include="Models\LocalShoppingCart.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
@@ -264,9 +265,6 @@
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ShoppingCart.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Size.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -380,6 +378,9 @@
     <Content Include="Views\UserRole\Index.cshtml" />
     <Content Include="Views\UserRole\Add.cshtml" />
     <Content Include="Views\UserRole\Delete.cshtml" />
+    <Content Include="Views\Goods\Details.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

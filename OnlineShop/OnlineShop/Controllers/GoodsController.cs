@@ -44,6 +44,12 @@ namespace OnlineShop.Controllers
             }
         }
 
+        // GET: Goods/Details/5
+        public ActionResult Details(int id)
+        {
+            return View(goodsDAO.GetById(id));
+        }
+
         // GET: Goods/Edit/5
         public ActionResult Edit(int id)
         {

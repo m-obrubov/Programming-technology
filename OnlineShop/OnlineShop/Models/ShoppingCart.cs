@@ -22,7 +22,6 @@ namespace OnlineShop.Models
     
         public int Id { get; set; }
         public int GoodsId { get; set; }
-        public int GoodsCount { get; set; }
     
         public virtual Goods Goods { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

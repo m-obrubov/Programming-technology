@@ -105,16 +105,6 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GoodsId" Type="int" Nullable="false" />
-          <Property Name="GoodsCount" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Size">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="GoodsId" Type="int" Nullable="false" />
-          <Property Name="SizeName" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="Count" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Address_Buyer">
           <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
@@ -264,18 +254,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Size_Goods">
-          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
-          <End Role="Size" Type="Self.Size" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Goods">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Size">
-              <PropertyRef Name="GoodsId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -287,7 +265,6 @@
           <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShoppingCart" EntityType="Self.ShoppingCart" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Address_Buyer" Association="Self.FK_Address_Buyer">
             <End Role="Buyer" EntitySet="Buyer" />
             <End Role="Address" EntitySet="Address" />
@@ -335,10 +312,6 @@
           <AssociationSet Name="FK_ShoppingCart_Goods" Association="Self.FK_ShoppingCart_Goods">
             <End Role="Goods" EntitySet="Goods" />
             <End Role="ShoppingCart" EntitySet="ShoppingCart" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Size_Goods" Association="Self.FK_Size_Goods">
-            <End Role="Goods" EntitySet="Goods" />
-            <End Role="Size" EntitySet="Size" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -421,7 +394,6 @@
           <Property Name="Price" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="ShoppingCart" Relationship="Self.FK_ShoppingCart_Goods" FromRole="Goods" ToRole="ShoppingCart" />
-          <NavigationProperty Name="Size" Relationship="Self.FK_Size_Goods" FromRole="Goods" ToRole="Size" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -458,19 +430,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="GoodsId" Type="Int32" Nullable="false" />
-          <Property Name="GoodsCount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Goods" Relationship="Self.FK_ShoppingCart_Goods" FromRole="ShoppingCart" ToRole="Goods" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_ShoppingCart" FromRole="ShoppingCart" ToRole="Order" />
-        </EntityType>
-        <EntityType Name="Size">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GoodsId" Type="Int32" Nullable="false" />
-          <Property Name="SizeName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Count" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Goods" Relationship="Self.FK_Size_Goods" FromRole="Size" ToRole="Goods" />
         </EntityType>
         <Association Name="FK_Address_Buyer">
           <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
@@ -580,18 +541,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Size_Goods">
-          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
-          <End Role="Size" Type="Self.Size" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Goods">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Size">
-              <PropertyRef Name="GoodsId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_ShoppingCart">
           <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -618,7 +567,6 @@
           <EntitySet Name="Message" EntityType="Self.Message" />
           <EntitySet Name="Order" EntityType="Self.Order" />
           <EntitySet Name="ShoppingCart" EntityType="Self.ShoppingCart" />
-          <EntitySet Name="Size" EntityType="Self.Size" />
           <AssociationSet Name="FK_Address_Buyer" Association="Self.FK_Address_Buyer">
             <End Role="Buyer" EntitySet="Buyer" />
             <End Role="Address" EntitySet="Address" />
@@ -654,10 +602,6 @@
           <AssociationSet Name="FK_ShoppingCart_Goods" Association="Self.FK_ShoppingCart_Goods">
             <End Role="Goods" EntitySet="Goods" />
             <End Role="ShoppingCart" EntitySet="ShoppingCart" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Size_Goods" Association="Self.FK_Size_Goods">
-            <End Role="Goods" EntitySet="Goods" />
-            <End Role="Size" EntitySet="Size" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_ShoppingCart" Association="Self.FK_Order_ShoppingCart">
             <End Role="ShoppingCart" EntitySet="ShoppingCart" />
@@ -773,17 +717,6 @@
               <MappingFragment StoreEntitySet="ShoppingCart">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
-                <ScalarProperty Name="GoodsCount" ColumnName="GoodsCount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Size">
-            <EntityTypeMapping TypeName="Model.Size">
-              <MappingFragment StoreEntitySet="Size">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
-                <ScalarProperty Name="SizeName" ColumnName="SizeName" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
