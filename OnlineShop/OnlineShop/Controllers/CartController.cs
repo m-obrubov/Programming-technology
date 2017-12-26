@@ -20,7 +20,6 @@ namespace OnlineShop.Controllers
         [HttpPost]
         public ActionResult Index(int id)
         {
-            
             return Add(id);
         }
         

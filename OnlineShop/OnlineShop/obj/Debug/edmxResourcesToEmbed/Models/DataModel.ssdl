@@ -88,7 +88,6 @@
     <Property Name="Status" Type="smallint" Nullable="false" />
     <Property Name="BuyerId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="ManagerId" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="ShoppingCartId" Type="int" Nullable="false" />
     <Property Name="DeliveryAddressId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="PaymentType" Type="smallint" Nullable="false" />
     <Property Name="IsPayed" Type="bit" Nullable="false" />
@@ -100,6 +99,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="GoodsId" Type="int" Nullable="false" />
+    <Property Name="OrderId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_Address_Buyer">
     <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
@@ -225,18 +225,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Order_ShoppingCart">
-    <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="1" />
-    <End Role="Order" Type="Self.Order" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ShoppingCart">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Order">
-        <PropertyRef Name="ShoppingCartId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ShoppingCart_Goods">
     <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
     <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
@@ -246,6 +234,18 @@
       </Principal>
       <Dependent Role="ShoppingCart">
         <PropertyRef Name="GoodsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShoppingCart_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShoppingCart">
+        <PropertyRef Name="OrderId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -300,12 +300,12 @@
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Order" EntitySet="Order" />
     </AssociationSet>
-    <AssociationSet Name="FK_Order_ShoppingCart" Association="Self.FK_Order_ShoppingCart">
-      <End Role="ShoppingCart" EntitySet="ShoppingCart" />
-      <End Role="Order" EntitySet="Order" />
-    </AssociationSet>
     <AssociationSet Name="FK_ShoppingCart_Goods" Association="Self.FK_ShoppingCart_Goods">
       <End Role="Goods" EntitySet="Goods" />
+      <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShoppingCart_Order" Association="Self.FK_ShoppingCart_Order">
+      <End Role="Order" EntitySet="Order" />
       <End Role="ShoppingCart" EntitySet="ShoppingCart" />
     </AssociationSet>
   </EntityContainer>

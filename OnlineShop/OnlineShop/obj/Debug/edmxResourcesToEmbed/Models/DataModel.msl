@@ -87,7 +87,6 @@
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
           <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
-          <ScalarProperty Name="ShoppingCartId" ColumnName="ShoppingCartId" />
           <ScalarProperty Name="DeliveryAddressId" ColumnName="DeliveryAddressId" />
           <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
           <ScalarProperty Name="IsPayed" ColumnName="IsPayed" />
@@ -98,7 +97,7 @@
     <EntitySetMapping Name="ShoppingCart">
       <EntityTypeMapping TypeName="Model.ShoppingCart">
         <MappingFragment StoreEntitySet="ShoppingCart">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
           <ScalarProperty Name="GoodsId" ColumnName="GoodsId" />
         </MappingFragment>
       </EntityTypeMapping>

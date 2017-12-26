@@ -1,0 +1,2 @@
+D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop.Tests\obj\Debug\OnlineShop.Tests.csprojResolveAssemblyReference.cache
+D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop.Tests\obj\Debug\OnlineShop.Tests.csproj.CoreCompileInputs.cache

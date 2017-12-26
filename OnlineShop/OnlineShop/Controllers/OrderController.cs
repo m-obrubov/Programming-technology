@@ -1,23 +1,54 @@
-﻿using System;
+﻿using OnlineShop.DAO;
+using OnlineShop.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace OnlineShop.Controllers
 {
     public class OrderController : Controller
     {
+        private OrderDAO orderDAO = new OrderDAO();
+
         // GET: Order
         public ActionResult Index()
         {
-            return View();
+            return View(orderDAO.GetAll());
+        }
+
+        public ActionResult IndexCreated()
+        {
+            return View(orderDAO.GetAllCreated());
         }
 
         // GET: Order/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(orderDAO.GetById(id));
+        }
+
+        // GET: Order/Confirm/5
+        public ActionResult Confirm(int id)
+        {
+            return View(orderDAO.GetById(id));
+        }
+
+        [HttpPost]
+        public ActionResult Confirm(int id, string submitButton)
+        {
+            if (submitButton == "Confirm")
+            {
+                orderDAO.UpdateStatus(id, OrderStatus.Confirmed);
+            }
+            else
+            {
+                orderDAO.UpdateStatus(id, OrderStatus.Cancelled);
+            }
+            
+            return RedirectToAction("Index");
         }
 
         // GET: Order/Create
@@ -28,56 +59,46 @@ namespace OnlineShop.Controllers
 
         // POST: Order/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Order order)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                order.Status = (short)OrderStatus.Created;
+                string userId = User.Identity.GetUserId();
+                order.BuyerId = userId;
+                order.ManagerId = "default";
+                order.DeliveryAddressId = userId;
+                order.IsPayed = false;
+                decimal totalCost = 0;
+                List<Goods> goodsInOrder = (Session["ShoppingCart"] as LocalShoppingCart).GoodsInCart;
+                foreach(Goods goods in goodsInOrder)
+                    totalCost += goods.Price;
+                order.TotalCost = totalCost;
+                Order addedOrder = orderDAO.Create(order);
+                orderDAO.AddGoodsToOrder(addedOrder, goodsInOrder);
+                return RedirectToAction("Index", "Home");
             }
             catch
             {
                 return View();
             }
         }
-
-        // GET: Order/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Order/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+        
         // GET: Order/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(orderDAO.GetById(id));
         }
 
         // POST: Order/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Order order)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                Order deletedOrder = orderDAO.GetByIdWithGoods(id);
+                orderDAO.Delete(deletedOrder);
+                orderDAO.DeleteGoodsFromOrder(order);
                 return RedirectToAction("Index");
             }
             catch

@@ -17,8 +17,8 @@ namespace OnlineShop.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AspNetUsers()
         {
-            this.MessagesRecepient = new HashSet<Message>();
-            this.MessagesSender = new HashSet<Message>();
+            this.Message = new HashSet<Message>();
+            this.Message1 = new HashSet<Message>();
             this.AspNetRoles = new HashSet<AspNetRoles>();
         }
     
@@ -42,9 +42,9 @@ namespace OnlineShop.Models
         public virtual Buyer Buyer { get; set; }
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Message> MessagesRecepient { get; set; }
+        public virtual ICollection<Message> Message { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Message> MessagesSender { get; set; }
+        public virtual ICollection<Message> Message1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
     }

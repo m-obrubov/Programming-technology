@@ -96,7 +96,6 @@
     <Property Name="Status" Type="Int16" Nullable="false" />
     <Property Name="BuyerId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ManagerId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ShoppingCartId" Type="Int32" Nullable="false" />
     <Property Name="DeliveryAddressId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="PaymentType" Type="Int16" Nullable="false" />
     <Property Name="IsPayed" Type="Boolean" Nullable="false" />
@@ -104,16 +103,13 @@
     <NavigationProperty Name="Address" Relationship="Self.FK_Order_Address" FromRole="Order" ToRole="Address" />
     <NavigationProperty Name="Buyer" Relationship="Self.FK_Order_Buyer" FromRole="Order" ToRole="Buyer" />
     <NavigationProperty Name="Employee" Relationship="Self.FK_Order_Employee" FromRole="Order" ToRole="Employee" />
-    <NavigationProperty Name="ShoppingCart" Relationship="Self.FK_Order_ShoppingCart" FromRole="Order" ToRole="ShoppingCart" />
+    <NavigationProperty Name="ShoppingCart" Relationship="Model.FK_ShoppingCart_Order" FromRole="Order" ToRole="ShoppingCart" />
   </EntityType>
   <EntityType Name="ShoppingCart">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="GoodsId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Goods" Relationship="Self.FK_ShoppingCart_Goods" FromRole="ShoppingCart" ToRole="Goods" />
-    <NavigationProperty Name="Order" Relationship="Self.FK_Order_ShoppingCart" FromRole="ShoppingCart" ToRole="Order" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Model.FK_ShoppingCart_Order" FromRole="ShoppingCart" ToRole="Order" />
   </EntityType>
   <Association Name="FK_Address_Buyer">
     <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
@@ -223,18 +219,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Order_ShoppingCart">
-    <End Role="ShoppingCart" Type="Self.ShoppingCart" Multiplicity="1" />
-    <End Role="Order" Type="Self.Order" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ShoppingCart">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Order">
-        <PropertyRef Name="ShoppingCartId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="AspNetUserRoles">
     <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
@@ -285,13 +269,25 @@
       <End Role="Goods" EntitySet="Goods" />
       <End Role="ShoppingCart" EntitySet="ShoppingCart" />
     </AssociationSet>
-    <AssociationSet Name="FK_Order_ShoppingCart" Association="Self.FK_Order_ShoppingCart">
-      <End Role="ShoppingCart" EntitySet="ShoppingCart" />
-      <End Role="Order" EntitySet="Order" />
-    </AssociationSet>
     <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <AssociationSet Name="FK_ShoppingCart_Order" Association="Model.FK_ShoppingCart_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="ShoppingCart" EntitySet="ShoppingCart" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_ShoppingCart_Order">
+    <End Type="Model.Order" Role="Order" Multiplicity="1" />
+    <End Type="Model.ShoppingCart" Role="ShoppingCart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShoppingCart">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -1,0 +1,74 @@
+﻿@model OnlineShop.Models.Order
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuyerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuyerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManagerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManagerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryAddressId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryAddressId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPayed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPayed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCost)
+        </dd>
+
+    </dl>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.Hidden("id", Model.Id);
+    <input type="submit" name="submitButton" value="Подтвердить" class="btn btn-primary"/>
+    <input type="submit" name="submitButton" value="Отклонить" class="btn btn-default" />
+}
+<p>
+    @Html.ActionLink("Назад", "Index")
+</p>
