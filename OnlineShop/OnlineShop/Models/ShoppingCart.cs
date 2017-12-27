@@ -11,14 +11,22 @@ namespace OnlineShop.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ShoppingCart
     {
         public int Id { get; set; }
+
+        [Display(Name = "Товар")]
         public int GoodsId { get; set; }
+
+        [Display(Name = "Заказ")]
         public int OrderId { get; set; }
-    
+
+        [Display(Name = "Товар")]
         public virtual Goods Goods { get; set; }
+
+        [Display(Name = "Заказ")]
         public virtual Order Order { get; set; }
     }
 }

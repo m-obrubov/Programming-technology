@@ -11,12 +11,22 @@ namespace OnlineShop.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Message
     {
         public int Id { get; set; }
+
+        [Required]
+        [Display(Name = "Текст сообщения")]
         public string Text { get; set; }
+
+        [Required]
+        [Display(Name = "Отправитель")]
         public string Sender { get; set; }
+
+        [Required]
+        [Display(Name = "Получатель")]
         public string Recepient { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }

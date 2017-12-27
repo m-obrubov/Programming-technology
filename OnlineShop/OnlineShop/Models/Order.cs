@@ -11,7 +11,8 @@ namespace OnlineShop.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,16 +22,36 @@ namespace OnlineShop.Models
         }
     
         public int Id { get; set; }
+
+        [Display(Name = "Статус")]
         public short Status { get; set; }
+
+        [Display(Name = "Покупатель")]
         public string BuyerId { get; set; }
+
+        
         public string ManagerId { get; set; }
+
+        [Display(Name = "Адрес")]
         public string DeliveryAddressId { get; set; }
+
+        [Required]
+        [Display(Name = "Тип оплаты")]
         public short PaymentType { get; set; }
+
+        [Display(Name = "Оплачен")]
         public bool IsPayed { get; set; }
+
+        [Display(Name = "Сумма заказа")]
         public decimal TotalCost { get; set; }
-    
+
+        [Display(Name = "Адрес")]
         public virtual Address Address { get; set; }
+
+        [Display(Name = "Покупатель")]
         public virtual Buyer Buyer { get; set; }
+
+        [Display(Name = "Менеджер")]
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShoppingCart> ShoppingCart { get; set; }

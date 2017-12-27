@@ -11,7 +11,8 @@ namespace OnlineShop.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Buyer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,10 +22,14 @@ namespace OnlineShop.Models
         }
     
         public string UserId { get; set; }
-    
+        
+        [Display(Name = "Адрес")]
         public virtual Address Address { get; set; }
+        
+        [Display(Name = "Информация пользователя")]
         public virtual AspNetUsers AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [Display(Name = "Заказ")]
         public virtual ICollection<Order> Order { get; set; }
     }
 }

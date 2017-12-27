@@ -11,7 +11,8 @@ namespace OnlineShop.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Address
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,14 +20,36 @@ namespace OnlineShop.Models
         {
             this.Order = new HashSet<Order>();
         }
-    
+        
         public string UserId { get; set; }
+
+        [Required]
+        [DataType(DataType.PostalCode)]
+        [Display(Name = "Индекс")]
         public string Postcode { get; set; }
+
+        [Required]
+        [Display(Name = "Страна")]
         public string Country { get; set; }
+
+        [Required]
+        [Display(Name = "Область")]
         public string Region { get; set; }
+
+        [Required]
+        [Display(Name = "Город")]
         public string City { get; set; }
+
+        [Required]
+        [Display(Name = "Улица")]
         public string Street { get; set; }
+
+        [Required]
+        [Display(Name = "Дом")]
         public string House { get; set; }
+
+        [Required]
+        [Display(Name = "Квартира")]
         public string Flat { get; set; }
     
         public virtual Buyer Buyer { get; set; }

@@ -24,33 +24,59 @@ namespace OnlineShop.Models
         }
     
         public string Id { get; set; }
+
+        [Required]
+        [Display(Name = "Имя")]
         public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Фамилия")]
         public string Surname { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Дата рождения")]
         public System.DateTime Birthdate { get; set; }
+
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Электронная почта")]
         public string Email { get; set; }
+
+        [Display(Name = "Подтверждение электронной почты")]
         public bool EmailConfirmed { get; set; }
         public string PasswordHash { get; set; }
         public string SecurityStamp { get; set; }
+
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Номер телефона")]
         public string PhoneNumber { get; set; }
+
+        [Display(Name = "Подтверждение номера телефона")]
         public bool PhoneNumberConfirmed { get; set; }
         public bool TwoFactorEnabled { get; set; }
         public Nullable<System.DateTime> LockoutEndDateUtc { get; set; }
+
+        [Display(Name = "Заблокирован")]
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
+
+        [Display(Name = "Имя пользователя")]
         public string UserName { get; set; }
         public string Discriminator { get; set; }
-    
+
+        [Display(Name = "Покупатель")]
         public virtual Buyer Buyer { get; set; }
+
+        [Display(Name = "Сотрудник")]
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Message> Message { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Message> Message1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [Display(Name = "Роли")]
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
     }
 }

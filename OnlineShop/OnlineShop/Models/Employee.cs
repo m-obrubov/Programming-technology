@@ -11,7 +11,8 @@ namespace OnlineShop.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,8 @@ namespace OnlineShop.Models
         }
     
         public string UserId { get; set; }
+
+        [Display(Name = "Заработная плата")]
         public Nullable<decimal> MonthSalary { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
