@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using PayService.Model;
+using PayService.DAO;
 
 namespace PayService
 {
@@ -18,9 +20,26 @@ namespace PayService
     {
 
         [WebMethod]
-        public string HelloWorld()
+        public bool PayOnline(string cardNumber, int expYear, int expMonth, string cardHolderName, string cvcCode, decimal purchaseSum)
         {
-            return "Привет всем!";
+            ClientAccount account = CheckInfo(cardNumber, expYear, expMonth, cardHolderName, cvcCode);
+            if (account == null) return false;
+            ClientAccountDAO clientAccountDAO = new ClientAccountDAO();
+            return clientAccountDAO.WriteOff(account.CardNumber, purchaseSum);
+        }
+
+        private ClientAccount CheckInfo(string cardNumber, int expYear, int expMonth, string cardHolderName, string cvcCode)
+        {
+            ClientAccount currentAccount = new ClientAccount(cardNumber, expYear, expMonth, cardHolderName, cvcCode);
+            DateTime expDate = new DateTime(expYear, expMonth, 1);
+            if (expDate < DateTime.Now || cardNumber.Length != 16)
+                return null;
+            ClientAccountDAO clientAccountDAO = new ClientAccountDAO();
+            ClientAccount expectedAccount = clientAccountDAO.GetByCardNumber(cardNumber);
+            if (currentAccount.Equals(expectedAccount))
+                return expectedAccount;
+            else
+                return null;
         }
     }
 }

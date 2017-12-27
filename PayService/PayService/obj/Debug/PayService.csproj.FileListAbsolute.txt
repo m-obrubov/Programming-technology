@@ -1,0 +1,14 @@
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\bin\PayService.dll.config
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\bin\PayService.dll
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\bin\PayService.pdb
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\bin\EntityFramework.dll
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\bin\EntityFramework.SqlServer.dll
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\bin\EntityFramework.xml
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\bin\EntityFramework.SqlServer.xml
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\bin\ru\EntityFramework.resources.dll
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\obj\Debug\PayService.csprojResolveAssemblyReference.cache
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\obj\Debug\PayService.csproj.CoreCompileInputs.cache
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\obj\Debug\PayService.dll
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\obj\Debug\PayService.pdb

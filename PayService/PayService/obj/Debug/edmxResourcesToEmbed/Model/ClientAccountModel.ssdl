@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище PayDataModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ClientAccount">
+    <Key>
+      <PropertyRef Name="CardNumber" />
+    </Key>
+    <Property Name="CardNumber" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="ExpYear" Type="int" Nullable="false" />
+    <Property Name="ExpMonth" Type="int" Nullable="false" />
+    <Property Name="CardHolder" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CVC" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="Хранилище PayDataModelContainer">
+    <EntitySet Name="ClientAccount" EntityType="Self.ClientAccount" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

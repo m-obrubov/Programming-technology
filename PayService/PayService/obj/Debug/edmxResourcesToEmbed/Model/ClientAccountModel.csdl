@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PayDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ClientAccount">
+    <Key>
+      <PropertyRef Name="CardNumber" />
+    </Key>
+    <Property Name="CardNumber" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CardHolder" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CVC" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Balance" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="ExpYear" Type="Int32" Nullable="false" />
+    <Property Name="ExpMonth" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="PayDataEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ClientAccount" EntityType="Self.ClientAccount" />
+  </EntityContainer>
+</Schema>
