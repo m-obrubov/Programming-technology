@@ -47,10 +47,9 @@
     </dl>
 
     @using (Html.BeginForm("Delete", "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
-        @Html.AntiForgeryToken()
         @Html.HiddenFor(id => Model.Id);
         <div class="form-actions no-color">
-            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            <input type="submit" value="Удалить" class="btn btn-danger" /> | 
             @Html.ActionLink("Назад", "Index")
         </div>
     }

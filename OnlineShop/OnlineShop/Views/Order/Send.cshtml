@@ -3,7 +3,7 @@
 @model OnlineShop.Models.Order
 
 <div>
-    <h4>Order</h4>
+    <h4>Подтвердить отправку заказа</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -29,21 +29,14 @@
         </dt>
 
         <dd>
-            @if (Model.ManagerId != "default")
-            {
-                <span>
-                    @Model.Employee.AspNetUsers.Name
-                    @Model.Employee.AspNetUsers.Surname
-                </span>
-                <br />
-                <span>
-                    @Model.Employee.AspNetUsers.PhoneNumber
-                </span>
-            }
-            else
-            {
-                <span>Не обработан</span>
-            }
+            <span>
+                @Model.Employee.AspNetUsers.Name
+                @Model.Employee.AspNetUsers.Surname
+            </span>
+            <br />
+            <span>
+                @Model.Employee.AspNetUsers.PhoneNumber
+            </span>
         </dd>
 
         <dt>

@@ -1,4 +1,9 @@
 ﻿@model IEnumerable<OnlineShop.Models.Goods>
+
+@{
+    Layout = "~/Views/Home/Index.cshtml";
+}
+
 @{
     int i = 0;
     for (; i + 4 < Model.Count(); i += 4)
@@ -6,52 +11,52 @@
         <div class="row">
             <div class="col-md-3 col-sm-6">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="row">
                         @Html.DisplayFor(modelItem => Model.ElementAt(i).Name)
                     </div>
-                    <div class="col-md-3">
+                    <div class="row">
                         @Html.DisplayFor(modelItem => Model.ElementAt(i).Price)
                     </div>
-                    <div class="col-md-12">
+                    <div class="row text-center">
                                 @Html.ActionLink("Добавить в корзину", "Details", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-default" })
                             </div>
                         </div>
                     </div>
             <div class="col-md-3 col-sm-6">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="row">
                         @Html.DisplayFor(modelItem => Model.ElementAt(i + 1).Name)
                     </div>
-                    <div class="col-md-3">
+                    <div class="row">
                         @Html.DisplayFor(modelItem => Model.ElementAt(i + 1).Price)
                     </div>
-                    <div class="col-md-12">
+                    <div class="row text-center">
                         @Html.ActionLink("Добавить в корзину", "Details", new { id = Model.ElementAt(i + 1).Id }, new { @class = "btn btn-default" })
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="row">
                         @Html.DisplayFor(modelItem => Model.ElementAt(i + 2).Name)
                     </div>
-                    <div class="col-md-3">
+                    <div class="row">
                         @Html.DisplayFor(modelItem => Model.ElementAt(i + 2).Price)
                     </div>
-                    <div class="col-md-12">
+                    <div class="row text-center">
                         @Html.ActionLink("Добавить в корзину", "Details", new { id = Model.ElementAt(i + 2).Id }, new { @class = "btn btn-default" })
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="row">
                         @Html.DisplayFor(modelItem => Model.ElementAt(i + 3).Name)
                     </div>
-                    <div class="col-md-3">
+                    <div class="row">
                         @Html.DisplayFor(modelItem => Model.ElementAt(i + 3).Price)
                     </div>
-                    <div class="col-md-12">
+                    <div class="row text-center">
                         @Html.ActionLink("Добавить в корзину", "Details", new { id = Model.ElementAt(i + 3).Id }, new { @class = "btn btn-default" })
                     </div>
                 </div>
@@ -63,13 +68,13 @@
         {
             <div class="col-md-3 col-sm-6">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="row">
                         @Html.DisplayFor(modelItem => Model.ElementAt(i).Name)
                     </div>
-                    <div class="col-md-3">
+                    <div class="row">
                         @Html.DisplayFor(modelItem => Model.ElementAt(i).Price)
                     </div>
-                    <div class="col-md-12">
+                    <div class="row text-center">
                         @Html.ActionLink("Добавить в корзину", "Details", new { id = Model.ElementAt(i).Id }, new { @class = "btn btn-default" })
                     </div>
                 </div>

@@ -1,8 +1,7 @@
 ﻿@model OnlineShop.Models.AspNetRoles
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Действительно удалить роль у пользователя?</h3>
 <div>
-    <h4>Удалить роль</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,7 +18,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Удалить" class="btn btn-danger" /> | 
             @Html.ActionLink("Назад", "Index")
         </div>
     }

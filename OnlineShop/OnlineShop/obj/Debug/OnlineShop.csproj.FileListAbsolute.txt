@@ -94,3 +94,5 @@ D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop\bin\
 D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop\bin\Microsoft.Web.Administration.dll
 D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop\bin\MvcSiteMapProvider.xml
 D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop\bin\MvcSiteMapProvider.WebActivator.xml
+D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop\bin\log4net.dll
+D:\study\5 семестр\ТП\Programming-technology\OnlineShop\OnlineShop\bin\log4net.xml

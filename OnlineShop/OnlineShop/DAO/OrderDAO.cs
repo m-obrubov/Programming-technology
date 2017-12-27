@@ -50,6 +50,13 @@ namespace OnlineShop.DAO
             return entities.SaveChanges() == 1 ? true : false;
         }
 
+        public bool UpdateIsPayed(int id, bool value)
+        {
+            Order current = entities.Order.FirstOrDefault(n => n.Id == id);
+            current.IsPayed = value;
+            return entities.SaveChanges() == 1 ? true : false;
+        }
+
         public bool UpdateStatus(int id, OrderStatus status)
         {
             Order current = entities.Order.FirstOrDefault(n => n.Id == id);

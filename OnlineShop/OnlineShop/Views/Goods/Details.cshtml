@@ -23,7 +23,7 @@
 @using (Html.BeginForm("Index", "Cart", FormMethod.Post))
 {
     @Html.HiddenFor(model => model.Id)
-    <input type="submit" value="Добавить в корзину" class="btn btn-default" />
+    <input type="submit" value="Добавить в корзину" class="btn btn-primary" />
 }
 <p>
     @Html.ActionLink("Назад", "Index")     

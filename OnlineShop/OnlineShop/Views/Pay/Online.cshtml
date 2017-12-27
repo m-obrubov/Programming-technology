@@ -1,5 +1,10 @@
 ﻿@model OnlineShop.Models.PurchaseInfo
 
+@{
+    ViewBag.Title = "Оплата";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -58,8 +63,11 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Оплатить" class="btn btn-default" />
+                <input type="submit" value="Оплатить" class="btn btn-primary" />
             </div>
         </div>
     </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

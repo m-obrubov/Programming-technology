@@ -3,9 +3,10 @@
 @model IEnumerable<OnlineShop.Models.Order>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Заказы";
     Layout = "~/Views/Profile/_Menu.cshtml";
 }
+
 <h2>Ваши заказы</h2>
 <table class="table">
     <tr>
@@ -70,7 +71,7 @@
         <td>
             @if (item.Status == (short)OnlineShop.Models.OrderStatus.Confirmed)
             {
-                @Html.ActionLink("Оплатить", "Online", "Pay", new { id = item.Id }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Оплатить", "Online", "Pay", new { id = item.Id, sum = item.TotalCost }, new { @class = "btn btn-default" })
             }
             else if (item.Status == (short)OnlineShop.Models.OrderStatus.Delivering)
             {

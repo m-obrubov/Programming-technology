@@ -1,11 +1,5 @@
-﻿using OnlineShop.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using log4net;
 using System.Web.Mvc;
-using OnlineShop.DAO;
 
 namespace OnlineShop.Controllers
 {
@@ -13,6 +7,7 @@ namespace OnlineShop.Controllers
     {
         public ActionResult Index()
         {
+            LogManager.GetLogger(typeof(HomeController)).Info("Приложение запущено");
             return RedirectToAction("Index", "Goods");
         }
     }

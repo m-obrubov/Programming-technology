@@ -60,6 +60,8 @@ namespace OnlineShop.Models
 
         [Display(Name = "Заблокирован")]
         public bool LockoutEnabled { get; set; }
+
+        [Display(Name = "Осталось попыток входа")]
         public int AccessFailedCount { get; set; }
 
         [Display(Name = "Имя пользователя")]

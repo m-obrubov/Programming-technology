@@ -29,7 +29,7 @@ namespace OnlineShop.Models
         [Display(Name = "Покупатель")]
         public string BuyerId { get; set; }
 
-        
+        [Display(Name = "Менеджер")]
         public string ManagerId { get; set; }
 
         [Display(Name = "Адрес")]
@@ -54,6 +54,7 @@ namespace OnlineShop.Models
         [Display(Name = "Менеджер")]
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [Display(Name = "Товары")]
         public virtual ICollection<ShoppingCart> ShoppingCart { get; set; }
     }
 }

@@ -12,10 +12,11 @@ namespace OnlineShop.Controllers
     public class PayController : Controller
     {
         // GET: Pay
-        public ActionResult Online(int id)
+        public ActionResult Online(int id, decimal sum)
         {
             ViewData["orderId"] = id;
-            return View();
+            PurchaseInfo info = new PurchaseInfo { Sum = sum };
+            return View(info);
         }
 
         // GET: Pay
@@ -32,7 +33,12 @@ namespace OnlineShop.Controllers
                     purchase.Sum
                 );
             if(payResult)
-                new OrderDAO().UpdateStatus(orderId, OrderStatus.Payed);
+            {
+                OrderDAO orderDAO = new OrderDAO();
+                orderDAO.UpdateStatus(orderId, OrderStatus.Payed);
+                orderDAO.UpdateIsPayed(orderId, true);
+            }
+                
             return RedirectToAction("Orders", "Profile");
         }
     }
