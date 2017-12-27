@@ -1,4 +1,6 @@
-﻿@model IEnumerable<OnlineShop.Models.Order>
+﻿@using System.ComponentModel.DataAnnotations;
+@using OnlineShop.Models;
+@model IEnumerable<OnlineShop.Models.Order>
 
 @{
     ViewBag.Title = "Заказы";
@@ -34,36 +36,23 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @{
-                switch (item.Status)
-                {
-                    case 0:
-                        <span>Создана</span>
-                        break;
-                    case 1:
-                        <span>Подтверждена</span>
-                        break;
-                    case 2:
-                        <span>Ожидает оплаты</span>
-                        break;
-                    case 3:
-                        <span>Доставляется</span>
-                        break;
-                    case 4:
-                        <span>Выполнен</span>
-                        break;
-                    case 5:
-                        <span>Отклонен</span>
-                        break;
-                }
-            }
+            @Html.DisplayFor(modelItem => ((OrderStatus)item.Status).GetAttribute<DisplayAttribute>().Name)
         </td>
         <td>
             @Html.ActionLink(item.Buyer.AspNetUsers.Name, "Details", "User", new { id = item.Buyer.UserId}, htmlAttributes: null)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Employee.AspNetUsers.Name) 
-            @Html.DisplayFor(modelItem => item.Employee.AspNetUsers.Surname)
+           @if (item.ManagerId != "default")
+           {
+            <span>
+                @item.Employee.AspNetUsers.Name
+                @item.Employee.AspNetUsers.Surname
+            </span>
+           }
+           else
+           {
+                <span>Не обработан</span>
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Address.Postcode), 
@@ -73,17 +62,8 @@
             @Html.DisplayFor(modelItem => item.Address.House),
             @Html.DisplayFor(modelItem => item.Address.Flat)
         </td>
-        <td>@{ 
-            switch (item.PaymentType)
-            {
-                case 0:
-                    <span>Наличная</span>
-                    break;
-                case 1:
-                    <span>Безналичная</span>
-                    break;
-            }
-        }
+        <td>
+            @Html.DisplayFor(modelItem => ((PaymentType)item.PaymentType).GetAttribute<DisplayAttribute>().Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsPayed)

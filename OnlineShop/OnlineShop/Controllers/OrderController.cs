@@ -19,15 +19,10 @@ namespace OnlineShop.Controllers
             return View(orderDAO.GetAll());
         }
 
-        public ActionResult IndexCreated()
-        {
-            return View(orderDAO.GetAllCreated());
-        }
-
         // GET: Order/Details/5
         public ActionResult Details(int id)
         {
-            return View(orderDAO.GetById(id));
+            return View(orderDAO.GetByIdWithDetails(id));
         }
 
         // GET: Order/Confirm/5
@@ -41,13 +36,13 @@ namespace OnlineShop.Controllers
         {
             if (submitButton == "Confirm")
             {
+                orderDAO.UpdateManager(id, User.Identity.GetUserId());
                 orderDAO.UpdateStatus(id, OrderStatus.Confirmed);
             }
             else
             {
                 orderDAO.UpdateStatus(id, OrderStatus.Cancelled);
             }
-            
             return RedirectToAction("Index");
         }
 
@@ -75,7 +70,8 @@ namespace OnlineShop.Controllers
                     totalCost += goods.Price;
                 order.TotalCost = totalCost;
                 Order addedOrder = orderDAO.Create(order);
-                orderDAO.AddGoodsToOrder(addedOrder, goodsInOrder);
+                if (orderDAO.AddGoodsToOrder(addedOrder, goodsInOrder))
+                    Session["ShoppingCart"] = new LocalShoppingCart();
                 return RedirectToAction("Index", "Home");
             }
             catch
@@ -96,7 +92,7 @@ namespace OnlineShop.Controllers
         {
             try
             {
-                Order deletedOrder = orderDAO.GetByIdWithGoods(id);
+                Order deletedOrder = orderDAO.GetByIdWithDetails(id);
                 orderDAO.Delete(deletedOrder);
                 orderDAO.DeleteGoodsFromOrder(order);
                 return RedirectToAction("Index");

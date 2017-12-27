@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using OnlineShop.Models;
+using System.Data.Entity;
 
 namespace OnlineShop.DAO
 {
@@ -16,14 +17,14 @@ namespace OnlineShop.DAO
             return addedOrder;
         }
 
-        public void AddGoodsToOrder(Order order, List<Goods> goodsInOrder)
+        public bool AddGoodsToOrder(Order order, List<Goods> goodsInOrder)
         {
             foreach (Goods goods in goodsInOrder)
             {
                 ShoppingCart item = new ShoppingCart { OrderId = order.Id, GoodsId = goods.Id };
                 entities.ShoppingCart.Add(item);
             }
-            entities.SaveChanges();
+            return entities.SaveChanges() == goodsInOrder.Count ? true : false;
         }
 
         public bool Delete(Order input)
@@ -38,13 +39,12 @@ namespace OnlineShop.DAO
 
         public Order GetById(int id) => entities.Order.FirstOrDefault(n => n.Id == id);
 
-        public Order GetByIdWithGoods(int id) => entities.Order.Include("ShoppingCart").FirstOrDefault(n => n.Id == id);
-        
-        public bool Update(Order input)
+        public Order GetByIdWithDetails(int id) => entities.Order.Where(n => n.Id == id).Include("Buyer.AspNetUsers").Include("Employee.AspNetUsers").Include("Address").Include("ShoppingCart").FirstOrDefault();
+
+        public bool UpdateManager(int id, string managerId)
         {
-            Order current = entities.Order.FirstOrDefault(n => n.Id == input.Id);
-            current.IsPayed = input.IsPayed;
-            current.Address = input.Address;
+            Order current = entities.Order.FirstOrDefault(n => n.Id == id);
+            current.ManagerId = managerId;
             return entities.SaveChanges() == 1 ? true : false;
         }
 
