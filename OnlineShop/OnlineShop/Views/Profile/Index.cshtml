@@ -1,0 +1,64 @@
+﻿@model OnlineShop.Models.Buyer
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Profile/_Menu.cshtml";
+}
+
+<h2>Профиль</h2>
+
+<div>
+    <h1>Добро пожаловать, @Html.DisplayFor(model => model.AspNetUsers.Name)</h1>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.Postcode),
+            @Html.DisplayFor(model => model.Address.Country),
+            @Html.DisplayFor(model => model.Address.Region),
+            @Html.DisplayFor(model => model.Address.City),
+            @Html.DisplayFor(model => model.Address.House),
+            @Html.DisplayFor(model => model.Address.Flat)
+        </dd>
+
+    </dl>
+
+    @Html.ActionLink("Изменить информацию", "EditByUser", "User", new { id = Model.Address.UserId }, new { @class="btn btn-default" })
+    @Html.ActionLink("Изменить адрес", "Edit", "Address", new { id = Model.Address.UserId }, new { @class = "btn btn-default" })
+</div>

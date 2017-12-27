@@ -19,9 +19,9 @@ namespace OnlineShop.Controllers
         }
 
         // GET: Address/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            return View(addressDAO.GetById(id));
         }
 
         // GET: Address/Create

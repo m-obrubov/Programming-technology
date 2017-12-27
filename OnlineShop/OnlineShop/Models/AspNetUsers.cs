@@ -11,7 +11,8 @@ namespace OnlineShop.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class AspNetUsers
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,6 +26,10 @@ namespace OnlineShop.Models
         public string Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Дата рождения")]
         public System.DateTime Birthdate { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }

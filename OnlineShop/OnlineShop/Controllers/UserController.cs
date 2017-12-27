@@ -47,6 +47,20 @@ namespace OnlineShop.Controllers
             }
         }
 
+        // GET: User/EditByUser/5
+        public ActionResult EditByUser(string id)
+        {
+            return View(userDAO.GetById(id));
+        }
+
+        // POST: User/EditByUser/5
+        [HttpPost]
+        public ActionResult EditByUser(string id, AspNetUsers user)
+        {
+            userDAO.Update(user);
+            return RedirectToAction("Index", "Profile");
+        }
+
         public ActionResult ChangeRole(string id)
         {
             return View(userDAO.GetByIdWithRoles(id));

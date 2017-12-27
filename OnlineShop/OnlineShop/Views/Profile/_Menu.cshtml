@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Профиль пользователя";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked">
+            <li>
+                @Html.ActionLink("Информация", "Index", "Profile", @*new { id = User.Identity.GetUserId() },*@ htmlAttributes: null)
+            </li>
+            <li>
+                @Html.ActionLink("Заказы", "Orders", "Profile", htmlAttributes: null)
+            </li>
+            <li>
+                @*@Html.ActionLink("Сообщения", "Messages", "Profile", new { id = User.Identity.GetUserId() }, htmlAttributes: null)*@
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-10">
+        @RenderBody()
+    </div>
+</div>

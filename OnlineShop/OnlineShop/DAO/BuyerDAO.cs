@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using OnlineShop.Models;
+using System.Data.Entity;
 
 namespace OnlineShop.DAO
 {
@@ -26,6 +27,15 @@ namespace OnlineShop.DAO
         public IEnumerable<Buyer> GetAll() => entities.Buyer.Select(n => n);
 
         public Buyer GetById(string id) => entities.Buyer.FirstOrDefault(n => n.UserId == id);
+
+        public Buyer GetByIdWithDetails(string id) => 
+            entities.
+            Buyer.
+            Where(n => n.UserId == id).
+            Include("Address").
+            Include("AspNetUsers").
+            Include("Orders").
+            FirstOrDefault();
 
         public bool Update(Buyer input)
         {
