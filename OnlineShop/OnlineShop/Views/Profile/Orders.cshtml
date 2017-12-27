@@ -1,0 +1,86 @@
+﻿@using System.ComponentModel.DataAnnotations;
+@using OnlineShop.Models;
+@model IEnumerable<OnlineShop.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Profile/_Menu.cshtml";
+}
+<h2>Ваши заказы</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManagerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryAddressId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPayed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalCost)
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => ((OrderStatus)item.Status).GetAttribute<DisplayAttribute>().Name)
+        </td>
+        <td>
+            @if (item.ManagerId != "default")
+            {
+                <span>
+                    @item.Employee.AspNetUsers.Name
+                    @item.Employee.AspNetUsers.Surname
+                </span>
+            }
+            else
+            {
+                <span>Не обработан</span>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address.Postcode),
+            @Html.DisplayFor(modelItem => item.Address.Country),
+            @Html.DisplayFor(modelItem => item.Address.Region),
+            @Html.DisplayFor(modelItem => item.Address.City),
+            @Html.DisplayFor(modelItem => item.Address.Street),
+            @Html.DisplayFor(modelItem => item.Address.House),
+            @Html.DisplayFor(modelItem => item.Address.Flat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => ((PaymentType)item.PaymentType).GetAttribute<DisplayAttribute>().Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsPayed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalCost)
+        </td>
+        <td>
+            @if (item.Status == (short)OnlineShop.Models.OrderStatus.Confirmed)
+            {
+                @Html.ActionLink("Оплатить", "PayOnline", "Order", new { id = item.Id }, new { @class = "btn btn-default" })
+            }
+            else if (item.Status == (short)OnlineShop.Models.OrderStatus.Delivering)
+            {
+                @Html.ActionLink("Подтвердить доставку", "ConfirmDelivering", "Order", new { id = item.Id }, new { @class = "btn btn-default" })
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Подробно", "Details", "Order", new { id = item.Id }, htmlAttributes: null)
+        </td>
+    </tr>
+}
+
+</table>

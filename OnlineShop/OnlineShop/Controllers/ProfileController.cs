@@ -22,7 +22,7 @@ namespace OnlineShop.Controllers
         public ActionResult Orders()
         {
             string userId = User.Identity.GetUserId();
-            return View(new OrderDAO().GetForUserWithDetails(userId));
+            return View(new OrderDAO().GetAllForUserWithDetails(userId));
         }
     }
 }

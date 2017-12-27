@@ -42,25 +42,17 @@ namespace OnlineShop.Controllers
         }
 
         // GET: Address/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            return View(addressDAO.GetById(id));
         }
 
         // POST: Address/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Address address)
+        public ActionResult Edit(Address address)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            addressDAO.Update(address);
+            return RedirectToAction("Index", "Profile");
         }
 
         // GET: Address/Delete/5

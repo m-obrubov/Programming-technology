@@ -59,6 +59,7 @@
             @Html.DisplayFor(modelItem => item.Address.Country), 
             @Html.DisplayFor(modelItem => item.Address.Region), 
             @Html.DisplayFor(modelItem => item.Address.City),
+            @Html.DisplayFor(modelItem => item.Address.Street),
             @Html.DisplayFor(modelItem => item.Address.House),
             @Html.DisplayFor(modelItem => item.Address.Flat)
         </td>
@@ -72,7 +73,7 @@
             @Html.DisplayFor(modelItem => item.TotalCost)
         </td>
         <td>
-            @if ((short)OnlineShop.Models.OrderStatus.Created == item.Status)
+            @if ((short)OnlineShop.Models.OrderStatus.Created == item.Status && User.IsInRole("Manager"))
             {
                 @Html.ActionLink("Подтвердить", "Confirm", new { id = item.Id }, new { @class = "btn btn-default" })
             }

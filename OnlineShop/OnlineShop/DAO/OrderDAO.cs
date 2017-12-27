@@ -41,7 +41,7 @@ namespace OnlineShop.DAO
 
         public Order GetByIdWithDetails(int id) => entities.Order.Where(n => n.Id == id).Include("Buyer.AspNetUsers").Include("Employee.AspNetUsers").Include("Address").Include("ShoppingCart").FirstOrDefault();
 
-        public Order GetForUserWithDetails(string id) => entities.Order.Where(n => n.BuyerId == id).Include("Employee.AspNetUsers").Include("Address").Include("ShoppingCart").FirstOrDefault();
+        public IEnumerable<Order> GetAllForUserWithDetails(string id) => entities.Order.Where(n => n.BuyerId == id).Include("Employee.AspNetUsers").Include("Address").Include("ShoppingCart");
 
         public bool UpdateManager(int id, string managerId)
         {
