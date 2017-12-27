@@ -207,6 +207,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
@@ -397,9 +398,12 @@
     <Content Include="Views\User\EditByUser.cshtml" />
     <Content Include="Views\Profile\Orders.cshtml" />
     <Content Include="Views\Address\Edit.cshtml" />
+    <Content Include="Views\Order\ConfirmDelivering.cshtml" />
+    <Content Include="Views\Order\Send.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Pay\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -46,6 +46,35 @@ namespace OnlineShop.Controllers
             return RedirectToAction("Index");
         }
 
+
+        // GET: Order/ConfirmDelivering
+        public ActionResult ConfirmDelivering(int id)
+        {
+            return View(orderDAO.GetById(id));
+        }
+
+        // POST: Order/ConfirmDelivering
+        [HttpPost]
+        public ActionResult ConfirmDelivering(int? id, Order order)
+        {
+            orderDAO.UpdateStatus(order.Id, OrderStatus.Done);
+            return RedirectToAction("Index", "Profile");
+        }
+
+        // GET: Order/Send
+        public ActionResult Send()
+        {
+            return View();
+        }
+
+        // POST: Order/Send
+        public ActionResult Send(Order order)
+        {
+            orderDAO.UpdateStatus(order.Id, OrderStatus.Delivering);
+            return RedirectToAction("Index");
+        }
+
+
         // GET: Order/Create
         public ActionResult Create()
         {

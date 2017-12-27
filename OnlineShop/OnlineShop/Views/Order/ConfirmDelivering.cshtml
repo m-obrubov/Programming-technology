@@ -1,0 +1,104 @@
+﻿@using System.ComponentModel.DataAnnotations;
+@using OnlineShop.Models;
+@model OnlineShop.Models.Order
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => ((OrderStatus)model.Status).GetAttribute<DisplayAttribute>().Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuyerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Buyer.AspNetUsers.Name)
+            @Html.DisplayFor(model => model.Buyer.AspNetUsers.Surname) <br />
+            @Html.DisplayFor(model => model.Buyer.AspNetUsers.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManagerId)
+        </dt>
+
+        <dd>
+            @if (Model.ManagerId != "default")
+            {
+                <span>
+                    @Model.Employee.AspNetUsers.Name
+                    @Model.Employee.AspNetUsers.Surname
+                </span>
+                <br />
+                <span>
+                    @Model.Employee.AspNetUsers.PhoneNumber
+                </span>
+            }
+            else
+            {
+                <span>Не обработан</span>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryAddressId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.Postcode),
+            @Html.DisplayFor(model => model.Address.Country),
+            @Html.DisplayFor(model => model.Address.Region),
+            @Html.DisplayFor(model => model.Address.City),
+            @Html.DisplayFor(model => model.Address.House),
+            @Html.DisplayFor(model => model.Address.Flat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => ((PaymentType)model.PaymentType).GetAttribute<DisplayAttribute>().Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPayed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPayed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShoppingCart)
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.ShoppingCart)
+            {
+                @Html.DisplayFor(modelItem => item.Goods.Name)
+                @Html.DisplayFor(modelItem => item.Goods.Price) <br />
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCost)
+        </dd>
+
+    </dl>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Id);
+    <input type="submit" name="submitButton" value="Подтвердить доставку" class="btn btn-primary" />
+}

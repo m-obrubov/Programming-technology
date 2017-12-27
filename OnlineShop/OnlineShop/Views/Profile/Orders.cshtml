@@ -70,7 +70,7 @@
         <td>
             @if (item.Status == (short)OnlineShop.Models.OrderStatus.Confirmed)
             {
-                @Html.ActionLink("Оплатить", "PayOnline", "Order", new { id = item.Id }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Оплатить", "Online", "Pay", new { id = item.Id }, new { @class = "btn btn-default" })
             }
             else if (item.Status == (short)OnlineShop.Models.OrderStatus.Delivering)
             {

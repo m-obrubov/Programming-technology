@@ -13,8 +13,11 @@ namespace OnlineShop.Models
         Created,
         [Display(Name = "Подтвержден")]
         Confirmed,
-        WaitingForPayment,
+        [Display(Name = "Оплачен")]
+        Payed,
+        [Display(Name = "Доставляется")]
         Delivering,
+        [Display(Name = "Завершен")]
         Done,
         [Display(Name = "Отклонен")]
         Cancelled
