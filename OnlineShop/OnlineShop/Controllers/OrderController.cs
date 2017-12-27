@@ -62,12 +62,13 @@ namespace OnlineShop.Controllers
         }
 
         // GET: Order/Send
-        public ActionResult Send()
+        public ActionResult Send(int id)
         {
-            return View();
+            return View(orderDAO.GetById(id));
         }
 
         // POST: Order/Send
+        [HttpPost]
         public ActionResult Send(Order order)
         {
             orderDAO.UpdateStatus(order.Id, OrderStatus.Delivering);

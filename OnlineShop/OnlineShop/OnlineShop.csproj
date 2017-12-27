@@ -241,7 +241,7 @@
     <Compile Include="Models\Buyer.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CardInfo.cs" />
+    <Compile Include="Models\PurchaseInfo.cs" />
     <Compile Include="Models\Employee.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -418,10 +418,10 @@
     <Content Include="Views\Address\Edit.cshtml" />
     <Content Include="Views\Order\ConfirmDelivering.cshtml" />
     <Content Include="Views\Order\Send.cshtml" />
+    <Content Include="Views\Pay\Online.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Pay\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

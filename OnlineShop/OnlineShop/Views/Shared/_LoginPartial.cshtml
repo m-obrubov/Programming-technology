@@ -10,8 +10,8 @@
         @if (User.IsInRole("Buyer"))
         {
             <li>@Html.ActionLink("В корзине - " + currentCart.GoodsInCart.Count, "Index", "Cart", routeValues: null, htmlAttributes: null)</li>
+            <li>@Html.ActionLink("Личный кабинет", "Index", "Profile", routeValues: null, htmlAttributes: null)</li>
         }
-        <li>@Html.ActionLink("Личный кабинет", "Index", "Profile", routeValues: null, htmlAttributes: null)</li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
     </ul>
     }

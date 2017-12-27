@@ -14,16 +14,26 @@ namespace OnlineShop.Controllers
         // GET: Pay
         public ActionResult Online(int id)
         {
-            return View(new OrderDAO().GetById(id));
+            ViewData["orderId"] = id;
+            return View();
         }
 
         // GET: Pay
         [HttpPost]
-        public ActionResult Online(Order order)
+        public ActionResult Online(int orderId, PurchaseInfo purchase)
         {
             PayServiceSoapClient payService = new PayServiceSoapClient();
-            if()
-            return View();
+            bool payResult = payService.PayOnline(
+                    purchase.CardNumber,
+                    purchase.ExpYear,
+                    purchase.ExpMonth,
+                    purchase.CardHolder,
+                    purchase.CVC,
+                    purchase.Sum
+                );
+            if(payResult)
+                new OrderDAO().UpdateStatus(orderId, OrderStatus.Payed);
+            return RedirectToAction("Orders", "Profile");
         }
     }
 }
