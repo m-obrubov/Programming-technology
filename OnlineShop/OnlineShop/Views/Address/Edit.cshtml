@@ -1,5 +1,10 @@
 ﻿@model OnlineShop.Models.Address
 
+@{
+    ViewBag.Title = "Редактирование адреса";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -72,4 +77,7 @@
             </div>
         </div>
     </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

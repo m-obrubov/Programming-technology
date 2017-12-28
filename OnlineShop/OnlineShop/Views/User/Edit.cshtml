@@ -1,5 +1,10 @@
 ﻿@model OnlineShop.Models.AspNetUsers
 
+@{
+    ViewBag.Title = "Изменение информации о пользователе";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -73,3 +78,7 @@
 <div>
     @Html.ActionLink("Назад", "Index")
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,5 +1,10 @@
 ﻿@model OnlineShop.Models.Goods
 
+@{
+    ViewBag.Title = "Редактирование товара";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -37,3 +42,7 @@
 <div>
     @Html.ActionLink("Назад", "IndexList")
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

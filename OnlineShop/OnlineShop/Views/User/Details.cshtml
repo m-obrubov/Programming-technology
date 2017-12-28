@@ -1,5 +1,10 @@
 ﻿@model OnlineShop.Models.AspNetUsers
 <div>
+    @{
+        ViewBag.Title = "Информация о пользователе";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+    }
     <h4>Информация о пользователе @Html.DisplayFor(model => model.UserName)</h4>
     <hr />
     <dl class="dl-horizontal">

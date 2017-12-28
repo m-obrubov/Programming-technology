@@ -1,7 +1,10 @@
 ﻿@using OnlineShop.DAO;
 @model OnlineShop.Models.AspNetRoles
 
-
+@{
+    ViewBag.Title = "Добавление роли";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 @using (Html.BeginForm(new { id = ViewData["userId"] }))
 {

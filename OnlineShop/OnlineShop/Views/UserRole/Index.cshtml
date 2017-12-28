@@ -1,5 +1,10 @@
 ﻿@model IEnumerable<OnlineShop.Models.AspNetRoles>
 
+@{
+    ViewBag.Title = "Роли пользователя";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 <p>
         @Html.ActionLink("Добавить", "Add", new { id = ViewData["userId"] })
 </p>

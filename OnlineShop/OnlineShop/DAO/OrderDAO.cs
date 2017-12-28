@@ -29,7 +29,8 @@ namespace OnlineShop.DAO
 
         public bool Delete(Order input)
         {
-            entities.Order.Remove(input);
+            Order current = GetById(input.Id);
+            entities.Order.Remove(current);
             return entities.SaveChanges() == 1 ? true : false;
         }
 
@@ -66,11 +67,13 @@ namespace OnlineShop.DAO
 
         public bool DeleteGoodsFromOrder(Order order)
         {
-            foreach (var goods in order.ShoppingCart)
+            
+            List<ShoppingCart> cart = entities.ShoppingCart.Where(n => n.OrderId == order.Id).ToList();
+            foreach(var item in cart)
             {
-                entities.ShoppingCart.Remove(goods);
+                entities.ShoppingCart.Remove(item);
             }
-            return entities.SaveChanges() == 1 ? true : false;
+            return entities.SaveChanges() == cart.Count ? true : false;
         }
     }
 }

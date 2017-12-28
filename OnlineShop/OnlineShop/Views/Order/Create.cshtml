@@ -1,5 +1,10 @@
 ﻿@model OnlineShop.Models.Order
 
+@{
+    ViewBag.Title = "Создание заказа";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 @using (Html.BeginForm("Create", "Order", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -32,3 +37,7 @@
 <div>
     @Html.ActionLink("Назад", "Index", "Home", null, null)
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

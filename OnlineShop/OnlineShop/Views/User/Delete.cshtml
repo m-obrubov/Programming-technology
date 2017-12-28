@@ -1,5 +1,10 @@
 ﻿@model OnlineShop.Models.AspNetUsers
 
+@{
+    ViewBag.Title = "Удаление пользователя";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 <h3>Удалить пользователя @Html.DisplayFor(model => model.UserName)?</h3>
 <div>
     <hr />

@@ -123,8 +123,8 @@ namespace OnlineShop.Controllers
             try
             {
                 Order deletedOrder = orderDAO.GetByIdWithDetails(id);
+                orderDAO.DeleteGoodsFromOrder(deletedOrder);
                 orderDAO.Delete(deletedOrder);
-                orderDAO.DeleteGoodsFromOrder(order);
                 return RedirectToAction("Index");
             }
             catch
