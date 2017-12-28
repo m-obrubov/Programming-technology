@@ -69,7 +69,6 @@ namespace OnlineShop.Controllers
         }
 
         // GET: Goods/Details/5
-        [Authorize(Roles = "Buyer")]
         public ActionResult Details(int id)
         {
             return View(goodsDAO.GetById(id));

@@ -50,23 +50,6 @@ namespace OnlineShop.Controllers
             return RedirectToAction("Index");
         }
 
-
-        // GET: Order/ConfirmDelivering
-        [Authorize(Roles = "Manager")]
-        public ActionResult ConfirmDelivering(int id)
-        {
-            return View(orderDAO.GetById(id));
-        }
-
-        // POST: Order/ConfirmDelivering
-        [HttpPost]
-        [Authorize(Roles = "Manager")]
-        public ActionResult ConfirmDelivering(int? id, Order order)
-        {
-            orderDAO.UpdateStatus(order.Id, OrderStatus.Done);
-            return RedirectToAction("Index", "Profile");
-        }
-
         // GET: Order/Send
         [Authorize(Roles = "Manager")]
         public ActionResult Send(int id)
@@ -83,6 +66,37 @@ namespace OnlineShop.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Order/ConfirmDelivering
+        [Authorize(Roles = "Buyer")]
+        public ActionResult ConfirmDelivering(int id)
+        {
+            return View(orderDAO.GetById(id));
+        }
+
+        // POST: Order/ConfirmDelivering
+        [HttpPost]
+        [Authorize(Roles = "Buyer")]
+        public ActionResult ConfirmDelivering(Order order)
+        {
+            orderDAO.UpdateStatus(order.Id, OrderStatus.Done);
+            return RedirectToAction("Index", "Profile");
+        }
+
+        // GET: Order/ConfirmDelivering
+        [Authorize(Roles = "Buyer")]
+        public ActionResult Cancel(int id)
+        {
+            return View(orderDAO.GetById(id));
+        }
+
+        // POST: Order/ConfirmDelivering
+        [HttpPost]
+        [Authorize(Roles = "Buyer")]
+        public ActionResult Cancel(Order order)
+        {
+            orderDAO.UpdateStatus(order.Id, OrderStatus.Cancelled);
+            return RedirectToAction("Index", "Profile");
+        }
 
         // GET: Order/Create
         [Authorize(Roles = "Buyer")]
