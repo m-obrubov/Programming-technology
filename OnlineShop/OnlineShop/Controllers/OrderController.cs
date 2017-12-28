@@ -14,24 +14,28 @@ namespace OnlineShop.Controllers
         private OrderDAO orderDAO = new OrderDAO();
 
         // GET: Order
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Index()
         {
             return View(orderDAO.GetAll());
         }
 
         // GET: Order/Details/5
+        [Authorize(Roles = "Admin, Manager")]
         public ActionResult Details(int id)
         {
             return View(orderDAO.GetByIdWithDetails(id));
         }
 
         // GET: Order/Confirm/5
+        [Authorize(Roles = "Manager")]
         public ActionResult Confirm(int id)
         {
             return View(orderDAO.GetById(id));
         }
 
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         public ActionResult Confirm(int id, string submitButton)
         {
             if (submitButton == "Confirm")
@@ -48,6 +52,7 @@ namespace OnlineShop.Controllers
 
 
         // GET: Order/ConfirmDelivering
+        [Authorize(Roles = "Manager")]
         public ActionResult ConfirmDelivering(int id)
         {
             return View(orderDAO.GetById(id));
@@ -55,6 +60,7 @@ namespace OnlineShop.Controllers
 
         // POST: Order/ConfirmDelivering
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         public ActionResult ConfirmDelivering(int? id, Order order)
         {
             orderDAO.UpdateStatus(order.Id, OrderStatus.Done);
@@ -62,6 +68,7 @@ namespace OnlineShop.Controllers
         }
 
         // GET: Order/Send
+        [Authorize(Roles = "Manager")]
         public ActionResult Send(int id)
         {
             return View(orderDAO.GetById(id));
@@ -69,6 +76,7 @@ namespace OnlineShop.Controllers
 
         // POST: Order/Send
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         public ActionResult Send(Order order)
         {
             orderDAO.UpdateStatus(order.Id, OrderStatus.Delivering);
@@ -77,6 +85,7 @@ namespace OnlineShop.Controllers
 
 
         // GET: Order/Create
+        [Authorize(Roles = "Buyer")]
         public ActionResult Create()
         {
             return View();
@@ -84,6 +93,7 @@ namespace OnlineShop.Controllers
 
         // POST: Order/Create
         [HttpPost]
+        [Authorize(Roles = "Buyer")]
         public ActionResult Create(Order order)
         {
             try
@@ -109,8 +119,9 @@ namespace OnlineShop.Controllers
                 return View();
             }
         }
-        
+
         // GET: Order/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             return View(orderDAO.GetById(id));
@@ -118,6 +129,7 @@ namespace OnlineShop.Controllers
 
         // POST: Order/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id, Order order)
         {
             try

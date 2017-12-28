@@ -13,6 +13,7 @@ namespace OnlineShop.Controllers
         private UserRoleDAO userRoleDAO = new UserRoleDAO();
 
         // GET: UserRole
+        [Authorize(Roles = "Admin")]
         public ActionResult Index(string id)
         {
             ViewData["userId"] = id;
@@ -20,6 +21,7 @@ namespace OnlineShop.Controllers
         }
 
         // GET: UserRole/Add
+        [Authorize(Roles = "Admin")]
         public ActionResult Add(string id)
         {
             ViewData["userId"] = id;
@@ -29,6 +31,7 @@ namespace OnlineShop.Controllers
 
         // POST: UserRole/Add
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Add(string id, AspNetRoles role)
         {
             try
@@ -46,6 +49,7 @@ namespace OnlineShop.Controllers
         }
 
         // GET: UserRole/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(string id, string name)
         {
             return View(userRoleDAO.GetByName(name));
@@ -53,6 +57,7 @@ namespace OnlineShop.Controllers
 
         // POST: UserRole/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(string id, AspNetRoles role)
         {
             try

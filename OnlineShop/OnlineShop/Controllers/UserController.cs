@@ -9,24 +9,28 @@ namespace OnlineShop.Controllers
     {
         private UserDAO userDAO = new UserDAO();
         // GET: User
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(userDAO.GetAll());
         }
 
         // GET: User/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(string id)
         {
             return View(userDAO.GetById(id));
         }
 
         // GET: User/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return RedirectToAction("RegisterByAdmin", "Account");
         }
 
         // GET: User/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(string id)
         {
             return View(userDAO.GetById(id));
@@ -34,6 +38,7 @@ namespace OnlineShop.Controllers
 
         // POST: User/Edit/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(AspNetUsers user)
         {
             try
@@ -48,6 +53,7 @@ namespace OnlineShop.Controllers
         }
 
         // GET: User/EditByUser/5
+        [Authorize(Roles = "Buyer")]
         public ActionResult EditByUser(string id)
         {
             return View(userDAO.GetById(id));
@@ -55,24 +61,15 @@ namespace OnlineShop.Controllers
 
         // POST: User/EditByUser/5
         [HttpPost]
+        [Authorize(Roles = "Buyer")]
         public ActionResult EditByUser(string id, AspNetUsers user)
         {
             userDAO.Update(user);
             return RedirectToAction("Index", "Profile");
         }
 
-        public ActionResult ChangeRole(string id)
-        {
-            return View(userDAO.GetByIdWithRoles(id));
-        }
-
-        public ActionResult ChangeRole(string id, AspNetUsers user)
-        {
-            ViewData["userId"] = id;
-            return View(userDAO.GetByIdWithRoles(id));
-        }
-
         // GET: User/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(string id)
         {
             return View(userDAO.GetById(id));
@@ -80,6 +77,7 @@ namespace OnlineShop.Controllers
 
         // POST: User/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(AspNetUsers user)
         {
             try

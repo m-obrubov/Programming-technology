@@ -12,6 +12,7 @@ namespace OnlineShop.Controllers
     public class PayController : Controller
     {
         // GET: Pay
+        [Authorize(Roles = "Buyer")]
         public ActionResult Online(int id, decimal sum)
         {
             ViewData["orderId"] = id;
@@ -21,6 +22,7 @@ namespace OnlineShop.Controllers
 
         // GET: Pay
         [HttpPost]
+        [Authorize(Roles = "Buyer")]
         public ActionResult Online(int orderId, PurchaseInfo purchase)
         {
             PayServiceSoapClient payService = new PayServiceSoapClient();

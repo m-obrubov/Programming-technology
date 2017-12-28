@@ -9,6 +9,7 @@ namespace OnlineShop.Controllers
     public class GoodsController : Controller
     {
         GoodsDAO goodsDAO = new GoodsDAO();
+
         // GET: Goods
         public ActionResult Index()
         {
@@ -16,12 +17,14 @@ namespace OnlineShop.Controllers
         }
 
         // GET: Goods
+        [Authorize(Roles = "Admin")]
         public ActionResult IndexList()
         {
             return View(goodsDAO.GetAll());
         }
 
         // GET: Goods/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -29,6 +32,7 @@ namespace OnlineShop.Controllers
 
         // POST: Goods/Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Goods goods, HttpPostedFileBase uploadImage)
         {
             try
@@ -65,12 +69,14 @@ namespace OnlineShop.Controllers
         }
 
         // GET: Goods/Details/5
+        [Authorize(Roles = "Buyer")]
         public ActionResult Details(int id)
         {
             return View(goodsDAO.GetById(id));
         }
 
         // GET: Goods/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
 
@@ -79,6 +85,7 @@ namespace OnlineShop.Controllers
 
         // POST: Goods/Edit/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(Goods goods, HttpPostedFileBase uploadImage)
         {
             try
@@ -102,6 +109,7 @@ namespace OnlineShop.Controllers
         }
 
         // GET: Goods/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             return View(goodsDAO.GetById(id));
@@ -109,6 +117,7 @@ namespace OnlineShop.Controllers
 
         // POST: Goods/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id, Goods goods)
         {
             try

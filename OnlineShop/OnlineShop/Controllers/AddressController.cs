@@ -1,30 +1,16 @@
-﻿using OnlineShop.DAO;
+﻿using Microsoft.AspNet.Identity;
+using OnlineShop.DAO;
 using OnlineShop.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 
 namespace OnlineShop.Controllers
 {
     public class AddressController : Controller
     {
         private AddressDAO addressDAO = new AddressDAO();
-        // GET: Address
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: Address/Details/5
-        public ActionResult Details(string id)
-        {
-            return View(addressDAO.GetById(id));
-        }
 
         // GET: Address/Create
+        [Authorize(Roles = "Buyer")]
         public ActionResult Create()
         {
             return View();
@@ -32,6 +18,7 @@ namespace OnlineShop.Controllers
 
         // POST: Address/Create
         [HttpPost]
+        [Authorize(Roles = "Buyer")]
         public ActionResult Create(Address address)
         {
             address.UserId = User.Identity.GetUserId();
@@ -42,6 +29,7 @@ namespace OnlineShop.Controllers
         }
 
         // GET: Address/Edit/5
+        [Authorize(Roles = "Buyer")]
         public ActionResult Edit(string id)
         {
             return View(addressDAO.GetById(id));
@@ -49,32 +37,11 @@ namespace OnlineShop.Controllers
 
         // POST: Address/Edit/5
         [HttpPost]
+        [Authorize(Roles = "Buyer")]
         public ActionResult Edit(Address address)
         {
             addressDAO.Update(address);
             return RedirectToAction("Index", "Profile");
-        }
-
-        // GET: Address/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Address/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, Address address)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

@@ -11,6 +11,7 @@ namespace OnlineShop.Controllers
     public class CartController : Controller
     {
         // GET: Cart
+        [Authorize(Roles = "Buyer")]
         public ActionResult Index()
         {
             LocalShoppingCart cart = (LocalShoppingCart)Session["ShoppingCart"];
@@ -18,11 +19,13 @@ namespace OnlineShop.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Buyer")]
         public ActionResult Index(int id)
         {
             return Add(id);
         }
-        
+
+        [Authorize(Roles = "Buyer")]
         public ActionResult Add(int id)
         {
             LocalShoppingCart cart = (LocalShoppingCart)Session["ShoppingCart"];
@@ -30,8 +33,9 @@ namespace OnlineShop.Controllers
             cart.AddToCart(goodsToAdd);
             return RedirectToAction("Index", "Home");
         }
-        
+
         // GET: Cart/Delete/5
+        [Authorize(Roles = "Buyer")]
         public ActionResult Delete(int id)
         {
             Goods goodsToRemove = new GoodsDAO().GetById(id);
@@ -40,6 +44,7 @@ namespace OnlineShop.Controllers
 
         // POST: Cart/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Buyer")]
         public ActionResult Delete(int id, Goods goods)
         {
             try
