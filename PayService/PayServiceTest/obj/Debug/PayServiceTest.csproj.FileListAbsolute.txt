@@ -1,0 +1,2 @@
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayServiceTest\obj\Debug\PayServiceTest.csprojResolveAssemblyReference.cache
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayServiceTest\obj\Debug\PayServiceTest.csproj.CoreCompileInputs.cache

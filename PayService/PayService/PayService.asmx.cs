@@ -30,7 +30,7 @@ namespace PayService
 
         private ClientAccount CheckInfo(string cardNumber, int expYear, int expMonth, string cardHolderName, string cvcCode)
         {
-            ClientAccount currentAccount = new ClientAccount(cardNumber, expYear, expMonth, cardHolderName, cvcCode);
+            ClientAccount currentAccount = new ClientAccount(cardNumber, expYear, expMonth, cardHolderName.ToUpper(), cvcCode);
             DateTime expDate = new DateTime(expYear, expMonth, 1);
             if (expDate < DateTime.Now || cardNumber.Length != 16)
                 return null;

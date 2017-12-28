@@ -8,7 +8,6 @@ D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\bin\
 D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\bin\EntityFramework.SqlServer.xml
 D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\bin\ru\EntityFramework.resources.dll
-D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\obj\Debug\PayService.csprojResolveAssemblyReference.cache
 D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\obj\Debug\PayService.csproj.CoreCompileInputs.cache
 D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\obj\Debug\PayService.dll
 D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\obj\Debug\PayService.pdb
