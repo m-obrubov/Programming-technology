@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using OnlineShop.DAO;
+using OnlineShop.Models;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
-using OnlineShop.DAO;
-using OnlineShop.Models;
 
 namespace OnlineShop.Controllers
 {
@@ -31,16 +29,38 @@ namespace OnlineShop.Controllers
 
         // POST: Goods/Create
         [HttpPost]
-        public ActionResult Create(Goods goods)
+        public ActionResult Create(Goods goods, HttpPostedFileBase uploadImage)
         {
             try
             {
+                if (uploadImage != null)
+                {
+                    byte[] imageData = null;
+                    using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                    {
+                        imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                    }
+                    goods.Image = imageData;
+                }
                 goodsDAO.Create(goods);
                 return RedirectToAction("IndexList");
             }
             catch
             {
                 return View();
+            }
+        }
+
+        public FileContentResult GetImage(int id)
+        {
+            Goods goods = goodsDAO.GetById(id);
+            if (goods != null)
+            {
+                return File(goods.Image, "image/jpeg");
+            }
+            else
+            {
+                return null;
             }
         }
 
@@ -59,12 +79,21 @@ namespace OnlineShop.Controllers
 
         // POST: Goods/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Goods goods)
+        public ActionResult Edit(Goods goods, HttpPostedFileBase uploadImage)
         {
             try
             {
+                if (uploadImage != null)
+                {
+                    byte[] imageData = null;
+                    using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                    {
+                        imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                    }
+                    goods.Image = imageData;
+                }
                 goodsDAO.Update(goods);
-                return RedirectToAction("IndexList");
+                return RedirectToAction("Index");
             }
             catch
             {

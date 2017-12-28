@@ -33,6 +33,7 @@ namespace OnlineShop.Models
         public decimal Price { get; set; }
         
         [Display(Name = "Изображение")]
+        //[FileExtensions]
         public byte[] Image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -8,9 +8,17 @@
     int i = 0;
     for (; i + 4 < Model.Count(); i += 4)
     {
+        <br />
         <div class="row">
             <div class="col-md-3 col-sm-6">
                 <div class="row">
+                    @if (Model.ElementAt(i).Image != null)
+                    {
+                        <div class="row text-center">
+                            @Html.Raw("<img style='width:200px;' src=\"data:image/jpeg;base64,"
+                                + Convert.ToBase64String(Model.ElementAt(i).Image) + "\" />")
+                        </div>
+                    }
                     <div class="row">
                         @Html.DisplayFor(modelItem => Model.ElementAt(i).Name)
                     </div>
@@ -24,6 +32,13 @@
                     </div>
             <div class="col-md-3 col-sm-6">
                 <div class="row">
+                    @if (Model.ElementAt(i + 1).Image != null)
+                    {
+                        <div class="row text-center">
+                            @Html.Raw("<img style='width:200px;' src=\"data:image/jpeg;base64,"
+                                + Convert.ToBase64String(Model.ElementAt(i + 1).Image) + "\" />")
+                        </div>
+                    }
                     <div class="row">
                         @Html.DisplayFor(modelItem => Model.ElementAt(i + 1).Name)
                     </div>
@@ -37,6 +52,13 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="row">
+                    @if (Model.ElementAt(i + 2).Image != null)
+                    {
+                        <div class="row text-center">
+                            @Html.Raw("<img style='width:200px;' src=\"data:image/jpeg;base64,"
+                                + Convert.ToBase64String(Model.ElementAt(i + 2).Image) + "\" />")
+                        </div>
+                    }
                     <div class="row">
                         @Html.DisplayFor(modelItem => Model.ElementAt(i + 2).Name)
                     </div>
@@ -50,6 +72,13 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="row">
+                    @if (Model.ElementAt(i + 3).Image != null)
+                    {
+                        <div class="row text-center">
+                            @Html.Raw("<img style='width:200px;' src=\"data:image/jpeg;base64,"
+                                + Convert.ToBase64String(Model.ElementAt(i + 3).Image) + "\" />")
+                        </div>
+                    }
                     <div class="row">
                         @Html.DisplayFor(modelItem => Model.ElementAt(i + 3).Name)
                     </div>
@@ -64,10 +93,18 @@
         </div>
     }
     <div class="row">
+        <br />
         @for (; i < Model.Count(); i++)
         {
             <div class="col-md-3 col-sm-6">
                 <div class="row">
+                    @if (Model.ElementAt(i).Image != null)
+                    {
+                        <div class="row text-center">
+                            @Html.Raw("<img style='width:200px;' src=\"data:image/jpeg;base64,"
+                                + Convert.ToBase64String(Model.ElementAt(i).Image) + "\" />")
+                        </div>
+                    }
                     <div class="row">
                         @Html.DisplayFor(modelItem => Model.ElementAt(i).Name)
                     </div>

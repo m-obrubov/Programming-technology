@@ -1,5 +1,4 @@
-﻿using log4net;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace OnlineShop.Controllers
 {
