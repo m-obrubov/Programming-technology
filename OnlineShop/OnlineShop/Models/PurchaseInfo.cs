@@ -10,14 +10,10 @@ namespace OnlineShop.Models
         public string CardNumber { get; set; }
 
         [Required]
-        [MinLength(4)]
-        [MaxLength(4)]
         [Display(Name = "Год окончания действия карты")]
         public int ExpYear { get; set; }
 
         [Required]
-        [MinLength(1)]
-        [MaxLength(2)]
         [Display(Name = "Месяц окончания действия карты")]
         public int ExpMonth { get; set; }
 

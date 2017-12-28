@@ -38,6 +38,10 @@
 
 @foreach (var item in Model)
 {
+    if (item.Id == "default")
+    {
+        continue;
+    }
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)

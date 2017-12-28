@@ -7,7 +7,6 @@ namespace OnlineShop.Controllers
     {
         public ActionResult Index()
         {
-            LogManager.GetLogger(typeof(HomeController)).Info("Приложение запущено");
             return RedirectToAction("Index", "Goods");
         }
     }
