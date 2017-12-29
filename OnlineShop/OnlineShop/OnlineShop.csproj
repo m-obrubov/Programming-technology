@@ -225,7 +225,6 @@
     <Compile Include="DAO\BuyerDAO.cs" />
     <Compile Include="DAO\EmployeeDAO.cs" />
     <Compile Include="DAO\GoodsDAO.cs" />
-    <Compile Include="DAO\MessageDAO.cs" />
     <Compile Include="DAO\OrderDAO.cs" />
     <Compile Include="DAO\UserRoleDAO.cs" />
     <Compile Include="Global.asax.cs">
