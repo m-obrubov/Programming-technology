@@ -18,11 +18,23 @@ namespace OnlineShop.DAO
             {
                 UserRoleDAO roleDAO = new UserRoleDAO();
                 IEnumerable<AspNetRoles> roles = roleDAO.GetAllForUser(input.Id);
+                AspNetUsers user = entities.AspNetUsers.FirstOrDefault(n => n.Id == input.Id);
                 foreach (AspNetRoles item in roles)
                 {
+                    if(item.Name == "Buyer")
+                    {
+                        BuyerDAO buyerDAO = new BuyerDAO();
+                        result &= buyerDAO.Delete(buyerDAO.GetById(user.Id));
+                        AddressDAO addressDAO = new AddressDAO();
+                        result &= addressDAO.Delete(addressDAO.GetById(user.Id));
+                    }
+                    else
+                    {
+                        EmployeeDAO employeeDAO = new EmployeeDAO();
+                        result &= employeeDAO.Delete(user.Id);
+                    }
                     result &= roleDAO.RemoveRole(input.Id, item);
                 }
-                AspNetUsers user = entities.AspNetUsers.FirstOrDefault(n => n.Id == input.Id);
                 entities.AspNetUsers.Remove(user);
                 result &= entities.SaveChanges() == 1;
             }

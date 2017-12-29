@@ -11,3 +11,4 @@ D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\bin\
 D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\obj\Debug\PayService.csproj.CoreCompileInputs.cache
 D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\obj\Debug\PayService.dll
 D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\obj\Debug\PayService.pdb
+D:\study\5 семестр\ТП\Programming-technology\PayService\PayService\obj\Debug\PayService.csprojResolveAssemblyReference.cache
